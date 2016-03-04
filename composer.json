@@ -1,0 +1,12 @@
+{
+    "name" : "ProjetSem4/Fortitudo",
+    "authors" :
+    [
+        { "name" : "Quentin Bouteiller" },
+        { "name" : "Temmy Van den Heuvel" }
+    ],
+    "require" : 
+    {
+        "slim/slim": "^3.2"
+    }
+}
