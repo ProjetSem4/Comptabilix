@@ -2,10 +2,10 @@
     <head>
         <title>{{%PAGE_TITLE%}} - Fortitudo</title>
         <!-- Compiled and minified bootstrap CSS -->
-        <link rel="stylesheet" href="template/bootstrap/3.3.6/bootstrap.min.css" />
+        <link rel="stylesheet" href="template/bootstrap/3.3.6/css/bootstrap.min.css" />
 
         <!-- Optional bootstrap theme -->
-        <link rel="stylesheet" href="template/bootstrap/3.3.6/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="template/bootstrap/3.3.6/css/bootstrap-theme.min.css" />
 
         <!-- Additionnal changes to bootstrap theme -->
         <link rel="stylesheet" href="template/template.css">
