@@ -14,9 +14,8 @@
     $templacat->load_template('footer');
 
     // [TEMP] Our first page
-    $slim->get('/', function(Slim\Http\Request $request, Slim\Http\Response $response, array $args)
+    $slim->get('/', function(Slim\Http\Request $request, Slim\Http\Response $response, array $args) use ($templacat)
     {
-        global $templacat;
         $response->write('<h1>Bonjour le monde</h1><p>Nothing to see here...</p>');   
         $templacat->set_variable('PAGE_TITLE', 'Homepage');
 
