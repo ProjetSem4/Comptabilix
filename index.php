@@ -13,14 +13,17 @@
     $templacat->load_template('sidebar', 'PAGE_SIDEBAR'); // The sidebar will be loaded into the PAGE_SIDEBAR variable
     $templacat->load_template('footer');
 
-    // [TEMP] Our first page
-    $slim->get('/', function(Slim\Http\Request $request, Slim\Http\Response $response, array $args) use ($templacat)
-    {
-        $response->write('<h1>Bonjour le monde</h1><p>Nothing to see here...</p>');   
-        $templacat->set_variable('PAGE_TITLE', 'Homepage');
+    // Then load the configuration file (if exists)
+    if(is_file('config.php'))
+        include 'config.php';
+    else // Or redirect to the installation wizard
+        header('Location : install/');
 
-        return $response;
-    })->setName('home');
+    // Set the name of the association
+    $templacat->set_variable('ASSOCIATION_NAME', $config['association']);
+
+    // Then include the router file
+    include 'router.php';
 
     // Start buffering the output
     ob_start();
