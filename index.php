@@ -22,6 +22,18 @@
     // Set the name of the association
     $templacat->set_variable('ASSOCIATION_NAME', $config['association']);
 
+    // Try to connect to the database
+    try
+    {
+        $slim->pdo = new PDO
+        (
+            'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'],
+            $config['db_user'],
+            $config['db_pass']
+        );
+    }
+    catch (PDOException $e) { die('<h1>Unable to connect to the database</h1>'); }
+
     // Then include the router file
     include 'router.php';
 
