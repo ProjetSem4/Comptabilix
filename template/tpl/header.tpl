@@ -46,4 +46,4 @@
 
                 <!-- Content container-->
                 <div class="col-lg-9">
-                    <div class="panel panel-default contenu-page">{{%PAGE_CONTENT%}}
+                    {{%PAGE_CONTENT%}}
