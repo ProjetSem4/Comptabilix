@@ -3,7 +3,7 @@
 				?>
                 
                 <div class="panel panel-default contenu-page">
-					<p><a href="salaries_voir.php">« Retourner à la liste des salariés</a></p>
+					<p><a href="salaries_voir">« Retourner à la liste des salariés</a></p>
                     <h1>Ajouter un salarié</h1>
                     
 					<form class="" role="form">

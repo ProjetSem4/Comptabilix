@@ -3,7 +3,7 @@
 				?>
                 
                 <div class="panel panel-default contenu-page">
-					<p><a href="clients_voir.php">« Retourner à la liste des clients</a></p>
+					<p><a href="clients_voir">« Retourner à la liste des clients</a></p>
                     <h1>Ajouter un client</h1>
                     
 					<form class="" role="form">

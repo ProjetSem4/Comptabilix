@@ -1,29 +1,9 @@
 				<?php
 				$templacat->set_variable("page_title", "Ajouter les membres");
 				?>
-                
-                <!-- <div class="alert alert-success" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Vert !</strong> Message.
-				</div>
-						
-				<div class="alert alert-info" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Bleu !</strong> Message.
-				</div>
-						
-				<div class="alert alert-warning" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Jaune !</strong> Message.
-				</div>
-						
-				<div class="alert alert-danger" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Rouge !</strong> Message.
-				</div> -->
-                
+               
                 <div class="panel panel-default contenu-page">
-				<p><a href="membres_voir.php"><< Retourner à la liste des membres</a></p>
+				<p><a href="membres_voir"><< Retourner à la liste des membres</a></p>
                     <h1>Ajouter un membre</h1>
 					<form class="" role="form">
 				
@@ -117,8 +97,4 @@
 				  
 				   </form>
 				   
-				   </div>
-
-                    
-                            
-                   
+				   </div>				   
