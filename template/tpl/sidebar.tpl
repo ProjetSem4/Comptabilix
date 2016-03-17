@@ -3,9 +3,9 @@
     <div class="panel panel-default panel-menu">
         <div class="panel-heading"><h3 class="panel-title miseenpage3">Gestion commerciale</h3></div>
         <ul class="nav nav-pills nav-stacked menu">
-            <li role="presentation"><a href="#">Projets</a></li>
-            <li role="presentation"><a href="#">Clients</a></li>
-            <li role="presentation"><a href="clients_voir.php">Salariés</a></li>
+            <li role="presentation"><a href="projet_voir">Projets</a></li>
+            <li role="presentation"><a href="clients_voir">Clients</a></li>
+            <li role="presentation"><a href="salaries_voir">Salariés</a></li>
         </ul>   
     </div>
 
@@ -13,7 +13,7 @@
     <div class="panel panel-default panel-menu">
         <div class="panel-heading"><h3 class="panel-title miseenpage3">Gestion associative</h3></div>
         <ul class="nav nav-pills nav-stacked menu">
-            <li role="presentation"><a href="#">Membres</a></li>
+            <li role="presentation"><a href="membres_voir">Membres</a></li>
         </ul>   
     </div>
 
