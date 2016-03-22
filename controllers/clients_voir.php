@@ -69,7 +69,7 @@
                         <td>' . $line['raison_sociale'] . '</td>
                         <td>' . $line['nb_projets'] . '</td>
                         <td><a class="btn btn-info" title="Visualiser le client" href="clients_visualiser?id=' . $line['id_personne'] . '"><span class="glyphicon glyphicon-user"></span></a>
-                        <a class="btn btn-warning" title="Éditer le client" href="clients_ajouter"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <a class="btn btn-warning" title="Éditer le client" href="clients_editer?id=' . $line['id_personne'] . '"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>';
             }
         ?>
