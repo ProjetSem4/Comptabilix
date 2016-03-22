@@ -1,23 +1,23 @@
 <?php
     // Check if all the required data are passed
     if(!isset($_POST['rs'], $_POST['adresse'], $_POST['cp'], $_POST['ville'], $_POST['tel'], $_POST['email']))
-        die('Mauvais usage');
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais usage du formulaire.');
 
     // Then check if all the required data aren't empty
     elseif(empty($_POST['rs']) || empty($_POST['adresse']) || empty($_POST['cp']) && empty($_POST['ville']) || empty($_POST['tel']) || empty($_POST['email']))
-        die('Tout n\'est pas rempli');
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Tous les champs ne sont pas rempli.');
 
     // Then check if the zip code is numeric
     elseif(!is_numeric($_POST['cp']))
-        die('Le code postal n\'est pas un nombre');
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le code postal n\'est pas un nombre.');
 
     // Same for the phone number
     elseif(!is_numeric($_POST['tel']))
-        die('Le numéro de téléphone n\'est pas un nombre');
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le numéro de téléphone n\'est pas un nombre.');
 
     // And finally check the e-mail address
     elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-        die('L\'e-mail n\'est pas valide');
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'L\'e-mail rentré n\'est pas valide.');
 
     // If everything's good
     else
@@ -50,19 +50,21 @@
         }
 
         // If nobody can be found, that's an error
-        if($t_personne_id === false)
-            die('Whoops! Something went wrong while inserting data into the database...');
+        if($t_personne_id === false)         
+            $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Whoops! Something went wrong while inserting data into the database...');   
+        else
+        {
+            // The insert the raison_sociale into the database
+            $query_insert_societe = $slim->pdo->prepare('INSERT INTO T_Societe VALUES (:id, :rs)');
+            
+            $query_insert_societe->bindParam(':id', $t_personne_id);
+            $query_insert_societe->bindParam(':rs', $_POST['rs']);
 
-        // The insert the raison_sociale into the database
-        $query_insert_societe = $slim->pdo->prepare('INSERT INTO T_Societe VALUES (:id, :rs)');
-        
-        $query_insert_societe->bindParam(':id', $t_personne_id);
-        $query_insert_societe->bindParam(':rs', $_POST['rs']);
+            $query_insert_societe->execute();
 
-        $query_insert_societe->execute();
-
-        // And finally go back to the right page
-        die('OK');
+            // And finally go back to the right page
+            $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'Le client a été ajouté avec succès.');
+        }
     }
 
     // Function used for getting the personne id matching the data in $post_data
@@ -110,4 +112,6 @@
 
         return $cleaned_post_data;
     }
+
+    header('Location: clients_ajouter');
 ?>
