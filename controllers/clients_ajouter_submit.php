@@ -22,6 +22,9 @@
     // If everything's good
     else
     {
+        // Firstly, clean $_POST from XSS attacks
+        $_POST = clean_post($_POST);
+
         // Check if the person is already in the database
         $t_personne_id = get_personne_id($_POST);
 
@@ -95,5 +98,16 @@
         $data = $query_match->fetch();
 
         return $data['id_personne'];
+    }
+
+    // Function used for removing potential XSS attacks into $_POST
+    function clean_post($post_data)
+    {
+        $cleaned_post_data = array();
+
+        foreach($post_data as $key => $value)
+            $cleaned_post_data[$key] = htmlspecialchars($value);
+
+        return $cleaned_post_data;
     }
 ?>

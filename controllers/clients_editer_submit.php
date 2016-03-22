@@ -26,7 +26,10 @@
     // If everything's good
     else
     {
-        // Firstly, update the t_personne informations
+        // Firstly, clean the $_POST data
+        $_POST = clean_post($_POST);
+
+        // Then update the t_personne informations
         $query_update_t_personne = $slim->pdo->prepare('UPDATE T_Personne
             SET adresse = :adresse,
             code_postal = :cp,
@@ -56,5 +59,16 @@
 
         // And finally go back to the right page
         die('OK');
+    }
+
+    // Function used for removing potential XSS attacks into $_POST
+    function clean_post($post_data)
+    {
+        $cleaned_post_data = array();
+
+        foreach($post_data as $key => $value)
+            $cleaned_post_data[$key] = htmlspecialchars($value);
+
+        return $cleaned_post_data;
     }
 ?>
