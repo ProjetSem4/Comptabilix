@@ -8,6 +8,10 @@
 	// Query the database
 	$query = $slim->pdo->query('SELECT * FROM V_Societe WHERE id_personne = ' . $_GET['id']);
 
+	// Check if the id is valid
+	if($query->rowCount() < 1)
+		die('Nothing found');
+
 	$line = $query->fetch();
 
 	$templacat->set_variable("page_title", "Détails pour " . $line['raison_sociale']);
