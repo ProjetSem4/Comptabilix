@@ -23,7 +23,7 @@
 	$slim->get('/clients_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/clients_editer.php'; })->setName('home');
 	$slim->post('/clients_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/clients_editer_submit.php'; })->setName('home');
 	
-	$slim->get('/clients_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/clients_voir.php'; })->setName('home');
+	$slim->get('/clients_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/clients_voir.php'; })->setName('home');
 	
 	$slim->get('/clients_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/clients_visualiser.php'; })->setName('home');
 	

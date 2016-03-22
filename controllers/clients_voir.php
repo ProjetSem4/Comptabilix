@@ -33,14 +33,34 @@
             <th style="width: 100px">Actions</th>
         </tr>
         <?php
+            // Get the current page
+            $page = 1;
+            if(isset($_GET['page']) && $_GET['page'] > 0)
+                $page = $_GET['page'];
+
+            // The first row to get from the database
+            $start_limit = ($page - 1) * $config['clients_per_page'];
+
+            // See how many clients there is in the database
+            $query_nbr_client = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM V_Societe');
+            $nbr_client = $query_nbr_client->fetch();
+            $nbr_client = $nbr_client['nb_personnes'];
+
+            // The see how many pages we have
+            $number_of_pages = ceil($nbr_client / $config['clients_per_page']);
+
+            // Do the query
             $query = $slim->pdo->query('
                 SELECT id_personne, raison_sociale, COUNT(num_projet) as nb_projets
                 FROM V_Societe
                 LEFT JOIN T_Projet ON V_Societe.id_personne = T_Projet.id_societe
                 GROUP BY id_personne
-                ORDER BY id_personne DESC');
+                ORDER BY id_personne DESC
+                LIMIT ' . $start_limit . ', ' . $config['clients_per_page']);
 
-            $nbr_client = $query->rowCount();
+            // If no client can be found
+            if($query->rowCount() < 1)
+                die('No clients found');
             
             while($line = $query->fetch())
             {
@@ -59,4 +79,17 @@
         </tr>
     </table>
 </div>
-            
+<div class="text-center">
+    <ul class="pagination">
+        <?php
+            // Create the pagination
+            for($i = 1; $i <= $number_of_pages; $i++)
+            {
+                if($i == $page) // If the page is the current one
+                    echo '<li class="active"><a href="?page=' . $i . '">' . $i . '</a></li>';
+                else
+                    echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
+            }
+        ?>
+    </ul>
+</div>

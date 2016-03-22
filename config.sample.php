@@ -8,6 +8,8 @@
 
         'association' => 'My association',
 
-        'currency' => '€'
+        'currency' => '€',
+        
+        'clients_per_page' => 20
     );
 ?>
