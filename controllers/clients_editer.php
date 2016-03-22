@@ -17,8 +17,8 @@
 	$templacat->set_variable("page_title", "Éditer " . $line['raison_sociale']);
 ?>    
 <div class="panel panel-default contenu-page">
-	<p><a href="clients_voir.php">« Retourner à la liste des clients</a></p>
-    <h1>Éditer <?php echo $line['raison_sociale']; ?></h1>
+	<p><a href="clients_voir.php?id=<?php echo $line['id_personne']; ?>">« Retourner sur la fiche client</a></p>
+    <h1>Éditer la fiche de <?php echo $line['raison_sociale']; ?></h1>
                     
 	<form class="" role="form" method="post" action="clients_editer_submit">
 		<h3>Informations sur l'entreprise</h3>
