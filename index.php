@@ -29,7 +29,8 @@
         (
             'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'],
             $config['db_user'],
-            $config['db_pass']
+            $config['db_pass'],
+            array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
         );
     }
     catch (PDOException $e) { die('<h1>Unable to connect to the database</h1>'); }
