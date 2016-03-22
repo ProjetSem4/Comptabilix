@@ -6,6 +6,8 @@
         'db_name'     => 'fortitudo',
         'db_prefix'   => 'fortitudo',
 
-        'association' => 'My association'
+        'association' => 'My association',
+
+        'currency' => '€'
     );
 ?>

@@ -147,8 +147,8 @@
 					echo '<tr>
 						<td>' . $projet['num_projet'] . '</td>
 						<td>' . $projet['titre_projet'] . $suffix . '</td>
-						<td>' . $price . ' €</td>
-						<td>' . $total_price . ' €</td>
+						<td>' . $price . ' ' . $config['currency'] . '</td>
+						<td>' . $total_price . ' ' . $config['currency'] . '</td>
 						<td><a class="btn btn-info" title="Visualiser le projet" href="projet_visualiser?id=' . $projet['num_projet'] . '"><span class="glyphicon glyphicon-search"></span></a></tr>
 					</tr>';
 				}
@@ -195,7 +195,7 @@
 						<td>' . $service['num_service'] . '</td>
 						<td>' . $service['libelle'] . '</td>
 						<td>' . $service['titre_projet'] . $suffix . '</td>
-						<td>' . $price . ' €</td>
+						<td>' . $price . ' ' . $config['currency'] . '</td>
 						<td><a class="btn btn-info" title="Visualiser le projet" href="service_visualiser?id=' . $service['num_service'] . '"><span class="glyphicon glyphicon-search"></span></a></tr>
 					</tr>';
 				}

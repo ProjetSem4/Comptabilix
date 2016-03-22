@@ -25,7 +25,7 @@
 	
 	$slim->get('/clients_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/clients_voir.php'; })->setName('home');
 	
-	$slim->get('/clients_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/clients_visualiser.php'; })->setName('home');
+	$slim->get('/clients_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/clients_visualiser.php'; })->setName('home');
 	
 	$slim->get('/salaries_ajouter', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_ajouter.php'; })->setName('home');
 	
