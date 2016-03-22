@@ -40,11 +40,10 @@
                 GROUP BY id_personne
                 ORDER BY id_personne DESC');
 
-            $nbr_client = 0;
+            $nbr_client = $query->rowCount();
             
             while($line = $query->fetch())
             {
-                $nbr_client++;
                 echo '<tr>
                         <td>' . $line['id_personne'] . '</td>
                         <td>' . $line['raison_sociale'] . '</td>
