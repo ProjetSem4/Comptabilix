@@ -32,19 +32,6 @@
             <th style="width: 150px">Projets</th>
             <th style="width: 100px">Actions</th>
         </tr>
-                    <p>Retrouvez ici l'ensemble des clients de votre association.</p>
-                    <table class="table table-hover">
-                        
-                        <tr>
-                            <th style="width: 30px">#</th>
-                            <th>Raison sociale</th>
-                            <th style="width: 150px">Projets</th>
-                            <th style="width: 150px">Actions</th>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>SignaNet</td>
-                            <td>0</td>
         <?php
             // Get the current page
             $page = 1;
