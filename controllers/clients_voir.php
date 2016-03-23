@@ -22,7 +22,7 @@
 </div>-->
 
 <div class="panel panel-default contenu-page">
-    <h1>Gestion des clients <a class="btn btn-success pull-right" href="clients_ajouter.php"><span class="glyphicon glyphicon-plus"></span> Ajouter un client</a></h1>
+    <h1>Gestion des clients <a class="btn btn-success pull-right" href="clients_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un client</a></h1>
     <p>Retrouvez ici l'ensemble des clients de votre association.</p>
 
     <table class="table table-hover">
