@@ -24,7 +24,7 @@
 				</div> -->
                 
                 <div class="panel panel-default contenu-page">
-				<p><a href="projet_voir.php">« Retourner à la liste des projets</a></p>
+				<p><a href="projet_voir">« Retourner à la liste des projets</a></p>
                     <h1>Projets</h1>
 					<h4> Entrer les données du nouveau projet </h4>
 					<p> </br> </p>

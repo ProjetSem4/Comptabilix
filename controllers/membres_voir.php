@@ -23,7 +23,7 @@
 				</div>
                 
                 <div class="panel panel-default contenu-page">
-                    <h1>Gestion des membres <a class="btn btn-success pull-right" href="membres.php"><span class="glyphicon glyphicon-plus"></span> Ajouter un membre</a></h1>
+                    <h1>Gestion des membres <a class="btn btn-success pull-right" href="membres"><span class="glyphicon glyphicon-plus"></span> Ajouter un membre</a></h1>
                     <p>Retrouvez ici l'ensemble des membres de votre association.</p>
                     <table class="table table-hover">
                         
@@ -37,8 +37,8 @@
                             <td>20</td>
                             <td>Quentin Bouteiller</td>
                             <td>0</td>
-                            <td><a class="btn btn-info" title="Visualiser le membre" href="membres_visualiser.php"><span class="glyphicon glyphicon-user"></span></a>
-                            <a class="btn btn-warning" title="Éditer le membre" href="membres.php"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <td><a class="btn btn-info" title="Visualiser le membre" href="membres_visualiser"><span class="glyphicon glyphicon-user"></span></a>
+                            <a class="btn btn-warning" title="Éditer le membre" href="membres"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a class="btn btn-danger" title="Supprimer le membre" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
                         <?php

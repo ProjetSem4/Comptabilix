@@ -23,7 +23,7 @@
 				</div>
                 
                 <div class="panel panel-default contenu-page">
-                    <h1>Gestion des salariés <a class="btn btn-success pull-right" href="salaries_ajouter.php"><span class="glyphicon glyphicon-plus"></span> Ajouter un salarié</a></h1>
+                    <h1>Gestion des salariés <a class="btn btn-success pull-right" href="salaries_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un salarié</a></h1>
                     <p>Retrouvez ici l'ensemble des salariés de votre association.</p>
                     <table class="table table-hover">
                         
@@ -37,8 +37,8 @@
                             <td>20</td>
                             <td>Truc Chose</td>
                             <td>0</td>
-                            <td><a class="btn btn-info" title="Visualiser le salarié" href="salaries_visualiser.php"><span class="glyphicon glyphicon-user"></span></a>
-                            <a class="btn btn-warning" title="Éditer le salarié" href="salaries_ajouter.php"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <td><a class="btn btn-info" title="Visualiser le salarié" href="salaries_visualiser"><span class="glyphicon glyphicon-user"></span></a>
+                            <a class="btn btn-warning" title="Éditer le salarié" href="salaries_ajouter"><span class="glyphicon glyphicon-pencil"></span></a>
                             <a class="btn btn-danger" title="Supprimer le salarié" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr>
                         <?php
