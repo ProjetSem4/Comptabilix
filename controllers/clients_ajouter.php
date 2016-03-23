@@ -1,5 +1,5 @@
 <?php
-	$templacat->set_variable("page_title", "Ajouter les clients");
+	$templacat->set_variable("page_title", "Ajouter un client");
 
 	// Show message(s), if needed
 	if(isset($_SESSION['fortitudo_messages']) && is_array($_SESSION['fortitudo_messages']))
