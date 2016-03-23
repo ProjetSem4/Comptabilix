@@ -2,6 +2,9 @@
     // We start by including the autoloader from Composer
     require 'vendor/autoload.php';
 
+    // Start the PHP session system
+    session_start();
+
     // Then, we create a new instance of Slim
     $slim = new \Slim\App();
 
@@ -29,7 +32,8 @@
         (
             'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'],
             $config['db_user'],
-            $config['db_pass']
+            $config['db_pass'],
+            array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8')
         );
     }
     catch (PDOException $e) { die('<h1>Unable to connect to the database</h1>'); }
