@@ -40,7 +40,7 @@
 	}
 ?>    
 <div class="panel panel-default contenu-page">
-	<p><a href="clients_voir.php?id=<?php echo $line['id_personne']; ?>">« Retourner sur la fiche client</a></p>
+	<p><a href="clients_voir?id=<?php echo $line['id_personne']; ?>">« Retourner sur la fiche client</a></p>
     <h1>Éditer la fiche de <?php echo $line['raison_sociale']; ?></h1>
                     
 	<form class="" role="form" method="post" action="clients_editer_submit">
