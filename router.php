@@ -29,7 +29,7 @@
 	
 	$slim->get('/salaries_ajouter', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_ajouter.php'; })->setName('home');
 	
-	$slim->get('/salaries_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_voir.php'; })->setName('home');
+	$slim->get('/salaries_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/salaries_voir.php'; })->setName('home');
 	
-	$slim->get('/salaries_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_visualiser.php'; })->setName('home');
+	$slim->get('/salaries_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/salaries_visualiser.php'; })->setName('home');
 ?>

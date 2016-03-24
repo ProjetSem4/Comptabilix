@@ -1,64 +1,77 @@
 <?php
-				$templacat->set_variable("page_title", "Voir les salariés");
-				?>
-                
-                <div class="alert alert-success" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Succès : </strong>le salarié « Truc Chose » a correctement été ajouté!
-				</div>
-                
-                <div class="alert alert-success" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Succès : </strong>le salarié « Truc Chose » a correctement été édité!
-				</div>
-                
-                <div class="alert alert-success" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Succès : </strong>le salarié « Truc Chose » a correctement été supprimé!
-				</div>
-                
-                <div class="alert alert-danger" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Erreur : </strong>impossible de supprimer « Truc Muche » puisqu'il est associé à au moins un projet!
-				</div>
-                
-                <div class="panel panel-default contenu-page">
-                    <h1>Gestion des salariés <a class="btn btn-success pull-right" href="salaries_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un salarié</a></h1>
-                    <p>Retrouvez ici l'ensemble des salariés de votre association.</p>
-                    <table class="table table-hover">
-                        
-                        <tr>
-                            <th style="width: 30px">#</th>
-                            <th>Nom</th>
-                            <th style="width: 150px">Projets</th>
-                            <th style="width: 150px">Actions</th>
-                        </tr>
-                        <tr>
-                            <td>20</td>
-                            <td>Truc Chose</td>
-                            <td>0</td>
-                            <td><a class="btn btn-info" title="Visualiser le salarié" href="salaries_visualiser"><span class="glyphicon glyphicon-user"></span></a>
-                            <a class="btn btn-warning" title="Éditer le salarié" href="salaries_ajouter"><span class="glyphicon glyphicon-pencil"></span></a>
-                            <a class="btn btn-danger" title="Supprimer le salarié" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
-                        </tr>
-                        <?php
-                            for($i = 19; $i > 0; $i--)
-                            {
-                                echo '<tr>
-                                    <td>' . $i . '</td>
-                                    <td>Truc Machin</td>
-                                    <td>' . mt_rand(1, 10) . '</td>
-                                    <td><a class="btn btn-info" title="Visualiser le salarié"><span class="glyphicon glyphicon-user"></span></a>
-                                    <a class="btn btn-warning" title="Éditer le salarié"><span class="glyphicon glyphicon-pencil"></span></a>
-                                    <a class="btn btn-default disabled" title="Impossible de supprimer le salarié, puisqu\'il est associé à au moins un projet"><span class="glyphicon glyphicon-trash"></span></a></td>
-                                </tr>';
-                            }
-                        ?>
-                        <tr>
-                            <th></th>
-                            <th colspan="3">Total : 20 salariés</th>
-                        </tr>
-                    </table>
-                </div>
+    $templacat->set_variable("page_title", "Voir les salariés");
+?>
+
+<div class="panel panel-default contenu-page">
+    <h1>Gestion des salariés <a class="btn btn-success pull-right" href="salaries_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un salarié</a></h1>
+    <p>Retrouvez ici l'ensemble des salariés de votre association.</p>
+    
+    <table class="table table-hover">                    
+        <tr>
+            <th style="width: 30px">#</th>
+            <th>Nom</th>
+            <th style="width: 150px">Projets</th>
+            <th style="width: 100px">Actions</th>
+        </tr>
+        <?php
+            // Get the current page
+            $page = 1;
+            if(isset($_GET['page']) && $_GET['page'] > 0)
+                $page = $_GET['page'];
+
+            // The first row to get from the database
+            $start_limit = ($page - 1) * $config['salaries_per_page'];
+
+            // See how many salariés there is in the database
+            $query_nbr_salarie = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM V_Salarie');
+            $nbr_salarie = $query_nbr_salarie->fetch();
+            $nbr_salarie = $nbr_salarie['nb_personnes'];
+
+            // The see how many pages we have
+            $number_of_pages = ceil($nbr_salarie / $config['salaries_per_page']);
+
+            // Do the query
+            $query = $slim->pdo->query('SELECT V_Salarie.id_personne, nom, prenom, count(T_Devis.num_devis) as nb_projets
+                FROM V_Salarie
+                LEFT JOIN TJ_Devis_Salarie_Poste ON V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
+                INNER JOIN T_Devis ON TJ_Devis_Salarie_Poste.num_devis = T_Devis.num_devis
+                WHERE T_Devis.est_accepte = 1
+                GROUP BY id_personne
+                ORDER BY id_personne DESC
+                LIMIT ' . $start_limit . ', ' . $config['salaries_per_page']);
+
+            // If no salarie can be found
+            if($query->rowCount() < 1)
+                die('No salariés found');
             
-        
+            while($line = $query->fetch())
+            {
+                echo '<tr>
+                        <td>' . $line['id_personne'] . '</td>
+                        <td>' . $line['prenom'] . ' ' . $line['nom'] . '</td>
+                        <td>' . $line['nb_projets'] . '</td>
+                        <td><a class="btn btn-info" title="Visualiser le salarie" href="salaries_visualiser?id=' . $line['id_personne'] . '"><span class="glyphicon glyphicon-user"></span></a>
+                        <a class="btn btn-warning" title="Éditer le salarie" href="salaries_editer?id=' . $line['id_personne'] . '"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                    </tr>';
+            }
+        ?>
+        <tr>
+            <th></th>
+            <th colspan="3">Total : <?php echo $nbr_salarie; ?> salariés</th>
+        </tr>
+    </table>
+</div>
+<div class="text-center">
+    <ul class="pagination">
+        <?php
+            // Create the pagination
+            for($i = 1; $i <= $number_of_pages; $i++)
+            {
+                if($i == $page) // If the page is the current one
+                    echo '<li class="active"><a href="?page=' . $i . '">' . $i . '</a></li>';
+                else
+                    echo '<li><a href="?page=' . $i . '">' . $i . '</a></li>';
+            }
+        ?>
+    </ul>
+</div>
