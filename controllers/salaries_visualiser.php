@@ -72,7 +72,6 @@
 
 				while($projet = $query_projects->fetch())
 				{
-
 					echo '<tr>
 						<td>' . $projet['num_projet'] . '</td>
 						<td>' . $projet['titre_projet'] . '</td>
