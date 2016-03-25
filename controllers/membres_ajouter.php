@@ -45,13 +45,23 @@
 			</div>
 		</div>
 
-		<!--<div class="form-group col-sm-4">
-			<label for="titre">Titre dans l'association: </label>
+		<div class="form-group col-sm-8">
+			<label for="titre">Titre dans l'association : </label>
 			<div class="input-group">
 				<div class="input-group-addon"><span class="glyphicon glyphicon-king"> </span></div>
-				<input id="titre" type="text" class="form-control" placeholder="Titre dans l'association" required>
+				<input id="titre" name="titre" type="text" class="form-control" placeholder="Titre dans l'association" required>
 			</div>
-		</div>-->
+		</div>
+		<div class="form-group col-sm-4">
+			<label for="actif">Est actif ?</label>
+			<div class="input-group">
+				<div class="input-group-addon"><span class="glyphicon glyphicon-thumbs-up"> </span></div>
+				<select id="actif" name="actif" class="form-control" required>
+					<option value="1">Oui</option>
+					<option value="0">Non</option>
+				</select>
+			</div>
+		</div>
    
 		<div class="form-group col-sm-12">
 			<label for="adresse">Adresse : </label>

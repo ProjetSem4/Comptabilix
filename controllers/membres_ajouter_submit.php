@@ -1,10 +1,10 @@
 <?php
     // Check if all the required data are passed
-    if(!isset($_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['cp'], $_POST['ville'], $_POST['tel'], $_POST['email']))
+    if(!isset($_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['cp'], $_POST['ville'], $_POST['tel'], $_POST['email'], $_POST['actif']))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais usage du formulaire.');
 
     // Then check if all the required data aren't empty
-    elseif(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['adresse']) || empty($_POST['cp']) && empty($_POST['ville']) || empty($_POST['tel']) || empty($_POST['email']))
+    elseif(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['adresse']) || empty($_POST['cp']) && empty($_POST['ville']) || empty($_POST['tel']) || empty($_POST['email'] || empty($_POST['actif'])))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Tous les champs ne sont pas rempli.');
 
     // Then check if the zip code is numeric
@@ -14,6 +14,10 @@
     // Same for the phone number
     elseif(!is_numeric($_POST['tel']))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le numéro de téléphone n\'est pas un nombre.');
+
+    // ... for the active parameter
+    elseif($_POST['actif'] != 0 && $_POST['actif'] != 1)
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le champ « est actif » est mal utilisé.');
 
     // And finally check the e-mail address
     elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
@@ -70,8 +74,9 @@
             }
 
             // And then insert the id_personne into T_membre
-            $query_insert_membre = $slim->pdo->prepare('INSERT INTO T_Membre VALUES (:id, 1)');
+            $query_insert_membre = $slim->pdo->prepare('INSERT INTO T_Membre VALUES (:id, :actif)');
             $query_insert_membre->bindParam(':id', $t_personne_id);
+            $query_insert_membre->bindParam(':actif', $_POST['actif']);
             $query_insert_membre->execute();
 
             // And finally go back to the right page
