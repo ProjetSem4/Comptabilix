@@ -45,7 +45,7 @@
 		</tr>
 	</table>
 	
-	<h3>Maîtrises d'œuvre <a class="btn btn-success pull-right" href="moe_ajouter?cid=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-plus"></span> Ajouter une maîtrise d'œuvre</a></h3>
+	<h3>Maîtrises d'œuvre <a class="btn btn-success pull-right" href="moe_ajouter?pid=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-plus"></span> Ajouter une maîtrise d'œuvre</a></h3>
 	
 	<table class="table">
 		<?php
@@ -78,7 +78,7 @@
 		?>
 	</table>
 
-	<h3>Devis <a class="btn btn-success pull-right" href="devis_ajouter?cid=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-plus"></span> Créer un nouveau devis</a></h3>
+	<h3>Devis <a class="btn btn-success pull-right" href="devis_ajouter?pid=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-plus"></span> Créer un nouveau devis</a></h3>
 	<table class="table">
 		<?php
 			// List all the quotations for the corresponding projet
