@@ -24,7 +24,7 @@
 
 <div class="panel panel-default contenu-page">
 	<p><a href="projets_voir">« Retourner à la liste des projets</a></p>
-    <h1>Fiche projet <a class="btn btn-warning pull-right" href="projets_editer?id=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-pencil"></span> Éditer le projet</a></h1>
+    <h1>Fiche projet <a class="btn btn-warning pull-right" href="projet_editer?id=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-pencil"></span> Éditer le projet</a></h1>
 	
 	<table class="table">
 		<tr>
