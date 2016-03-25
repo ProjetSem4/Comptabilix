@@ -9,7 +9,7 @@
 	
 	$slim->get('/projet_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/projet_visualiser.php'; })->setName('home');
 	
-	$slim->get('/projet_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/projet_voir.php'; })->setName('home');
+	$slim->get('/projet_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/projet_voir.php'; })->setName('home');
 	
 	$slim->get('/membres', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres.php'; })->setName('home');
 	
