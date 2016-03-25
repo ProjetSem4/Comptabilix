@@ -33,7 +33,7 @@
             $query = $slim->pdo->query('SELECT T_Projet.num_projet, T_Projet.titre_projet, V_Societe.id_personne, V_Societe.raison_sociale
                 FROM T_Projet
                 INNER JOIN V_Societe ON T_Projet.id_societe = V_Societe.id_personne
-                ORDER BY date_creation DESC
+                ORDER BY num_projet DESC
                 LIMIT ' . $start_limit . ', ' . $config['projets_per_page']);
 
             // If no projet can be found
