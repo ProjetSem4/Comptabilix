@@ -34,8 +34,8 @@
             $query = $slim->pdo->query('SELECT V_Salarie.id_personne, nom, prenom, count(T_Devis.num_devis) as nb_projets
                 FROM V_Salarie
                 LEFT JOIN TJ_Devis_Salarie_Poste ON V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
-                INNER JOIN T_Devis ON TJ_Devis_Salarie_Poste.num_devis = T_Devis.num_devis
-                WHERE T_Devis.est_accepte = 1
+                LEFT JOIN T_Devis ON TJ_Devis_Salarie_Poste.num_devis = T_Devis.num_devis
+                WHERE T_Devis.est_accepte = 1 OR T_Devis.est_accepte IS NULL
                 GROUP BY id_personne
                 ORDER BY id_personne DESC
                 LIMIT ' . $start_limit . ', ' . $config['salaries_per_page']);
