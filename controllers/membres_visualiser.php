@@ -61,14 +61,9 @@
 					
 	<h3>Projets associés</h3>
 	<table class="table">
-		<tr>
-			<th>#</th>
-			<th>Titre du projet</th>
-			<th style="width: 50px">Action</th>
-		</tr>
 		<?php
 			// List all the projets for the corresponding member
-			$query_orojets = $slim->pdo->query('SELECT T_Projet.num_projet, titre_projet
+			$query_projets = $slim->pdo->query('SELECT T_Projet.num_projet, titre_projet
 				FROM TJ_Membre_Projet
 				INNER JOIN T_Projet ON TJ_Membre_Projet.num_projet = T_Projet.num_projet
 				WHERE id_membre = ' . $_GET['id'] . '
@@ -76,13 +71,15 @@
 			) or die(var_dump($slim->pdo->errorInfo()));
 
 			// If none can be found
-			if($query_orojets->rowCount() < 1)
+			if($query_projets->rowCount() < 1)
 				echo '<tr><td colspan="3" style="text-align:center">Aucun projet associé n\'a pu être trouvé</td></td>';
 			
 			// Otherwise
 			else
 			{
-				while($projet = $query_orojets->fetch())
+				echo '<tr><th>#</th><th>Titre du projet</th><th style="width: 50px">Action</th></tr>';
+
+				while($projet = $query_projets->fetch())
 				{
 					echo '<tr>
 						<td>' . $projet['num_projet'] . '</td>
