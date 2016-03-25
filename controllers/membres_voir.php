@@ -2,7 +2,7 @@
 	$templacat->set_variable("page_title", "Voir les membres");
 ?>
 <div class="panel panel-default contenu-page">
-    <h1>Gestion des membres <a class="btn btn-success pull-right" href="membres"><span class="glyphicon glyphicon-plus"></span> Ajouter un membre</a></h1>
+    <h1>Gestion des membres <a class="btn btn-success pull-right" href="membres_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un membre</a></h1>
     <p>Retrouvez ici l'ensemble des membres de votre association.</p>
                     
     <table class="table table-hover">
