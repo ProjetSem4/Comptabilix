@@ -10,6 +10,7 @@
 
         'currency' => '€',
         
-        'clients_per_page' => 20
+        'clients_per_page' => 20,
+        'membres_per_page' => 20
     );
 ?>

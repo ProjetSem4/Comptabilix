@@ -13,7 +13,7 @@
 	
 	$slim->get('/membres', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres.php'; })->setName('home');
 	
-	$slim->get('/membres_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_voir.php'; })->setName('home');
+	$slim->get('/membres_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/membres_voir.php'; })->setName('home');
 	
 	$slim->get('/membres_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_visualiser.php'; })->setName('home');
 	
