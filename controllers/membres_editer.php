@@ -42,7 +42,7 @@
     }
 ?>    
 <div class="panel panel-default contenu-page">
-    <p><a href="membres_voir?id=<?php echo $line['id_personne']; ?>">« Retourner sur la fiche membre</a></p>
+    <p><a href="membres_visualiser?id=<?php echo $line['id_personne']; ?>">« Retourner sur la fiche membre</a></p>
     <h1>Éditer la fiche de <?php echo $line['prenom'] . ' ' . $line['nom']; ?></h1>
     
     <form class="" role="form" method="post" action="membres_editer_submit">
