@@ -6,7 +6,9 @@
         $_GET['id'] = $slim->pdo->quote($_GET['id']);
 
     // Query the database
-    $query = $slim->pdo->query('SELECT * FROM V_Membre WHERE id_personne = ' . $_GET['id']);
+    $query = $slim->pdo->query('SELECT V_Membre.*, V_Identifiant.id_personne as compte_actif FROM V_Membre
+                                LEFT JOIN V_Identifiant ON V_Membre.id_personne = V_Identifiant.id_personne
+                                WHERE V_Membre.id_personne = ' . $_GET['id']);
 
     // Check if the id is valid
     if($query->rowCount() < 1)
@@ -44,6 +46,7 @@
     <h1>Éditer la fiche de <?php echo $line['prenom'] . ' ' . $line['nom']; ?></h1>
     
     <form class="" role="form" method="post" action="membres_editer_submit">
+        <h2>Informations sur le membre</h2>
         <div class="form-group col-sm-6">
             <label for="prenom">Prénom : </label>
             <div class="input-group">
@@ -115,6 +118,19 @@
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                 <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" value="<?php echo $line['mail']; ?>">
+            </div>
+        </div>
+
+        <h2>Accès à fortitudo</h2>
+
+        <div class="form-group col-sm-12">
+            <label for="access">Activer l'accès à Fortitudo ?</label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></div>
+                <select required name="access" id="access" class="form-control">
+                    <option value="0"<?php if(is_null($line['compte_actif'])) echo ' selected'; ?>>Non</option>
+                    <option value="1"<?php if(!is_null($line['compte_actif'])) echo ' selected'; ?>>Oui</option>
+                </select>
             </div>
         </div>
 

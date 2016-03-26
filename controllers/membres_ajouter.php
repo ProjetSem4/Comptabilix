@@ -29,6 +29,7 @@
     <h1>Ajouter un membre</h1>
 	
 	<form class="" role="form" method="post" action="membres_ajouter_submit">
+        <h2>Informations sur le membre</h2>
 		<div class="form-group col-sm-6">
 			<label for="prenom">Prénom : </label>
 			<div class="input-group">
@@ -102,6 +103,19 @@
 				<input type="email" name="email" class="form-control" id="email" placeholder="E-mail">
 			</div>
 		</div>
+
+        <h2>Accès à fortitudo</h2>
+
+        <div class="form-group col-sm-12">
+            <label for="access">Activer l'accès à Fortitudo ?</label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></div>
+                <select required name="access" id="access" class="form-control">
+                    <option value="0">Non</option>
+                    <option value="1">Oui</option>
+                </select>
+            </div>
+        </div>
    		
    		<button type="reset" class="btn btn-danger">Remettre à zéro le formulaire</button>
 		<button type="submit" class="btn btn-success">Ajouter le membre</button>  

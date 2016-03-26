@@ -1,10 +1,10 @@
 <?php
     // Check if all the required data are passed
-    if(!isset($_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['cp'], $_POST['ville'], $_POST['tel'], $_POST['email'], $_POST['actif']))
+    if(!isset($_POST['nom'], $_POST['prenom'], $_POST['adresse'], $_POST['cp'], $_POST['ville'], $_POST['tel'], $_POST['email'], $_POST['actif'], $_POST['access']))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais usage du formulaire.');
 
     // Then check if all the required data aren't empty
-    elseif(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['adresse']) || empty($_POST['cp']) && empty($_POST['ville']) || empty($_POST['tel']) || empty($_POST['email'] || empty($_POST['actif'])))
+    elseif(empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['adresse']) || empty($_POST['cp']) && empty($_POST['ville']) || empty($_POST['tel']) || empty($_POST['email'] || !is_numeric($_POST['actif']) || !is_numeric($_POST['access'])))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Tous les champs ne sont pas rempli.');
 
     // Then check if the zip code is numeric
@@ -18,6 +18,10 @@
     // ... for the active parameter
     elseif($_POST['actif'] != 0 && $_POST['actif'] != 1)
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le champ « est actif » est mal utilisé.');
+
+    // ... and for the access parameter
+    elseif($_POST['access'] != 0 && $_POST['access'] != 1)
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le champ « accès à fortitudo » est mal utilisé.');
 
     // And finally check the e-mail address
     elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
@@ -78,6 +82,19 @@
             $query_insert_membre->bindParam(':id', $t_personne_id);
             $query_insert_membre->bindParam(':actif', $_POST['actif']);
             $query_insert_membre->execute();
+
+            // Same for the password (if needed)
+            if($_POST['access'] == 1)
+            {
+                $query_insert_identifiant = $slim->pdo->prepare('INSERT INTO T_Identifiant (mot_de_passe, cle_recuperation, id_membre) VALUES("", :cle, :idm)');
+
+                $query_insert_identifiant->bindParam(':idm', $t_personne_id);
+
+                // We generate a recovery key, so the user will be able to create its own password
+                $query_insert_identifiant->bindParam(':cle', uniqid());
+
+                $query_insert_identifiant->execute();
+            }
 
             // And finally go back to the right page
             $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'Le membre a été ajouté avec succès.');
