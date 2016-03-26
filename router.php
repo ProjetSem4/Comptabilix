@@ -14,6 +14,9 @@
 	$slim->get('/membres_ajouter', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_ajouter.php'; })->setName('home');
 	$slim->post('/membres_ajouter_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_ajouter_submit.php'; })->setName('home');
 
+	$slim->get('/membres_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_editer.php'; })->setName('home');
+	$slim->post('/membres_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_editer_submit.php'; })->setName('home');
+
 	$slim->get('/membres_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/membres_voir.php'; })->setName('home');
 	
 	$slim->get('/membres_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_visualiser.php'; })->setName('home');
