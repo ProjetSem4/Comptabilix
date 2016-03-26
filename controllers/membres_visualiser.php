@@ -63,10 +63,12 @@
 			<td class="titre-tableau">Accès à fortitudo</td>
 			<td><span class="glyphicon glyphicon-eye-open"></span>
 				<?php 
-					if(!is_null($line['compte_actif']))
-						echo '<span class="label label-success">Activé</span>';
+					if(!is_null($line['compte_actif']) && $line['actif'] == 1)
+						echo ' <span class="label label-success">Activé</span>';
+					elseif(!is_null($line['compte_actif']) && $line['actif'] == 0)
+						echo ' <span class="label label-warning">Bloqué (ancien membre)</span>';
 					else
-						echo '<span class="label label-danger">Désactivé</span>';
+						echo ' <span class="label label-danger">Désactivé</span>';
 				?>
 			</td>
 		</tr>
