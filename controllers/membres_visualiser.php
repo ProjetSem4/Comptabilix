@@ -6,7 +6,9 @@
 		$_GET['id'] = $slim->pdo->quote($_GET['id']);
 
 	// Query the database
-	$query = $slim->pdo->query('SELECT * FROM V_Membre WHERE id_personne = ' . $_GET['id']);
+	$query = $slim->pdo->query('SELECT V_Membre.*, V_Identifiant.id_personne as compte_actif FROM V_Membre
+								LEFT JOIN V_Identifiant ON V_Membre.id_personne = V_Identifiant.id_personne
+								WHERE V_Membre.id_personne = ' . $_GET['id']);
 
 	// Check if the id is valid
 	if($query->rowCount() < 1)
@@ -56,6 +58,17 @@
 		<tr>
 			<td class="titre-tableau">Adresse e-mail</td>
 			<td><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:<?php echo $line['mail']; ?>"><?php echo $line['mail']; ?></a></td>
+		</tr>
+		<tr>
+			<td class="titre-tableau">Accès à fortitudo</td>
+			<td><span class="glyphicon glyphicon-eye-open"></span>
+				<?php 
+					if(!is_null($line['compte_actif']))
+						echo '<span class="label label-success">Activé</span>';
+					else
+						echo '<span class="label label-danger">Désactivé</span>';
+				?>
+			</td>
 		</tr>
 	</table>
 					
