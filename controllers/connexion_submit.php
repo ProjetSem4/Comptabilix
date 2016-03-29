@@ -18,12 +18,14 @@
         $password = $slim->pdo->quote($password);
 
         // Check if the user exists, if the password is right and if he has the right to connect
-        $query = $slim->pdo->query('SELECT id_personne
+        $query = $slim->pdo->query('SELECT V_Identifiant.id_personne, nom, prenom
             FROM V_Identifiant
+            INNER JOIN V_Membre
+            ON V_Identifiant.id_personne = V_Membre.id_personne
             WHERE
-                mail = ' . $login . ' AND 
+                V_Identifiant.mail = ' . $login . ' AND 
                 mot_de_passe = ' . $password . ' AND
-                actif = 1 AND
+                V_Identifiant.actif = 1 AND
                 cle_recuperation IS NULL');
 
         // If nothing was found
@@ -37,8 +39,16 @@
         }
         else
         {
+            // Fetch the user informations
+            $user_infos = $query->fetch();
+
             // The user is now connected
-            $_SESSION['connecte'] = true;
+            $_SESSION['connection_state'] = array
+                (
+                    'connected' => true,
+                    'name'      => $user_infos['prenom'] . ' ' . $user_infos['nom'],
+                    'id'        => $user_infos['id_personne']
+                );
 
             // So he can go to the index
             header('Location: /');

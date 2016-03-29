@@ -1,4 +1,7 @@
 <?php
+    // Clean the connection_state array
+    $_SESSION['connection_state'] = array();
+
     // Destroy the old session
     session_destroy();
 
