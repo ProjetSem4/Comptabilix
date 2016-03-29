@@ -34,7 +34,7 @@
                 <div class="navbar-middle navbar-brand miseenpage2">{{%ASSOCIATION_NAME%}}</div>
 
                 <!-- Menu at the right of the header -->
-                <ul class="nav navbar-nav navbar-right"></ul>
+                <ul class="nav navbar-nav navbar-right">{{%LOGGED_IN_MENU%}}</ul>
             </div>
         </nav>
 
