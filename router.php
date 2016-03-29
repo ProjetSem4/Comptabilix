@@ -36,4 +36,9 @@
 	$slim->get('/salaries_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_voir.php'; })->setName('home');
 	
 	$slim->get('/salaries_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_visualiser.php'; })->setName('home');
+
+	$slim->get('/connexion', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion.php'; })->setName('home');
+	$slim->post('/connexion_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_submit.php'; })->setName('home');
+
+	$slim->get('/connexion_deconnecter', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/deconnexion.php'; })->setName('home');
 ?>
