@@ -13,7 +13,15 @@
 
     // We load the template files into the templating system
     $templacat->load_template('header');
-    $templacat->load_template('sidebar', 'PAGE_SIDEBAR'); // The sidebar will be loaded into the PAGE_SIDEBAR variable
+
+    // If the requested URI isn't a connection page, then show the sidebar and the logged-in menu
+    if(substr($_SERVER['REQUEST_URI'], 0, 10) !== '/connexion')
+    {
+        $templacat->load_template('sidebar', 'PAGE_SIDEBAR'); // The sidebar will be loaded into the PAGE_SIDEBAR variable
+        $templacat->load_template('logged_in_menu', 'LOGGED_IN_MENU'); // Same for the logged-in menu
+
+    }
+
     $templacat->load_template('footer');
 
     // Then load the configuration file (if exists)
@@ -37,6 +45,10 @@
         );
     }
     catch (PDOException $e) { die('<h1>Unable to connect to the database</h1>'); }
+
+    // Check if the user is connected, or if he tries to access a login page
+    if((!isset($_SESSION['connecte']) || $_SESSION['connecte'] !== true) && substr($_SERVER['REQUEST_URI'], 0, 10) !== '/connexion')
+        header('Location: /connexion'); // Then redirect to the login page
 
     // Then include the router file
     include 'router.php';
