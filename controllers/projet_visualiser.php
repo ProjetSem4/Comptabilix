@@ -45,7 +45,7 @@
 		</tr>
 	</table>
 	
-	<h3>Maîtrises d'œuvre <a class="btn btn-success pull-right" href="moe_ajouter?pid=<?php echo $line['num_projet']; ?>"><span class="glyphicon glyphicon-plus"></span> Ajouter une maîtrise d'œuvre</a></h3>
+	<h3>Maîtrises d'œuvre</h3>
 	
 	<table class="table">
 		<?php
@@ -69,8 +69,8 @@
 				{
 					echo '<tr>
 						<td>' . $moe['id_personne'] . '</td>
-						<td>' . $moe['nom'] . ' ' . $moe['prenom'] . '</td>
-						<td><a class="btn btn-info" title="Visualiser le maître d\'œuvre" href="moe_visualiser?id=' . $moe['id_personne'] . '"><span class="glyphicon glyphicon-search"></span></a>
+						<td>' . $moe['prenom'] . ' ' . $moe['nom'] . '</td>
+						<td><a class="btn btn-info" title="Visualiser le maître d\'œuvre" href="membres_visualiser?id=' . $moe['id_personne'] . '"><span class="glyphicon glyphicon-search"></span></a>
 						</td>
 					</tr>';
 				}

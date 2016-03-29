@@ -70,6 +70,22 @@
                 </select>
             </div>
         </div>
+        <div class="form-group col-sm-12">
+            <label for="id_moe">Maitrîses d'œuvre :</label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                <select class="form-control" id="id_moe" name="id_moe[]" required multiple>
+                    <?php
+                        $query_list_moe = $slim->pdo->query('SELECT id_personne, nom, prenom FROM V_Membre ORDER BY prenom, nom ASC');
+                        
+                        while($line = $query_list_moe->fetch())
+                        {
+                            echo '<option value="' . $line['id_personne'] . '">' . $line['prenom'] . ' ' . $line['nom'] . '</option>';
+                        }
+                    ?>
+                </select>
+            </div>
+        </div>
 
         <button type="reset" class="btn btn-danger">Remettre à zéro le formulaire</button>
         <button type="submit" class="btn btn-success">Ajouter le projet</button>
