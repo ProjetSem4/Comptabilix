@@ -29,10 +29,10 @@
 
     <form role="form" method="post" action="connexion_submit">
         <div class="form-group col-sm-12">
-            <label for="login">Nom d'utilisateur : </label>
+            <label for="login">Adresse e-mail : </label>
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"> </span></div>
-                <input id="login" name="login" type="text" class="form-control" placeholder="Nom d'utilisateur" required>
+                <input id="login" name="login" type="email" class="form-control" placeholder="Nom d'utilisateur" required>
             </div>
         </div>
 
