@@ -2,7 +2,7 @@
     $templacat->set_variable("page_title", "Voir les postes");
 ?>
 <div class="panel panel-default contenu-page">
-    <h1>Gestion des postes <a class="btn btn-success pull-right" href="poste_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un poste</a></h1>
+    <h1>Gestion des postes <a class="btn btn-success pull-right" href="postes_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un poste</a></h1>
     <p>Retrouvez ici l'ensemble des postes proposés pour les projets de votre association.</p>
     
     <table class="table table-hover">
@@ -45,8 +45,8 @@
                         <td>' . $line['num_poste'] . '</td>
                         <td>' . $line['libelle'] . '</td>
                         <td>' . $line['tarif_horaire'] . ' ' . $config['currency'] . '</td>
-                        <td><a class="btn btn-info" title="Visualiser le poste" href="poste_visualiser?id=' . $line['num_poste'] . '"><span class="glyphicon glyphicon-user"></span></a>
-                        <a class="btn btn-warning" title="Éditer le poste" href="poste_editer?id=' . $line['num_poste'] . '"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a class="btn btn-info" title="Visualiser le poste" href="postes_visualiser?id=' . $line['num_poste'] . '"><span class="glyphicon glyphicon-user"></span></a>
+                        <a class="btn btn-warning" title="Éditer le poste" href="postes_editer?id=' . $line['num_poste'] . '"><span class="glyphicon glyphicon-pencil"></span></a></td>
                     </tr>';
             }
         ?>
