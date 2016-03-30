@@ -61,4 +61,7 @@
 	$slim->get('/moa_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_editer.php'; })->setName('home');
 	$slim->post('/moa_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_editer_submit.php'; })->setName('home');
 
+	$slim->get('/mon_compte', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/mon_compte.php'; })->setName('home');
+	$slim->post('/changer_mdp_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/changer_mdp_submit.php'; })->setName('home');
+
 ?>
