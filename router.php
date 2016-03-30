@@ -52,4 +52,9 @@
 	$slim->get('/moa_ajouter_etape2', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_ajouter_etape2.php'; })->setName('home');
 	$slim->post('/moa_ajouter_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_ajouter_submit.php'; })->setName('home');
 
+	$slim->get('/moa_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_visualiser.php'; })->setName('home');
+
+	$slim->get('/moa_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_editer.php'; })->setName('home');
+	$slim->post('/moa_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_editer_submit.php'; })->setName('home');
+
 ?>
