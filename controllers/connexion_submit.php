@@ -32,7 +32,7 @@
         if($query->rowCount() == 0)
         {
             // Show an error message
-            $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais nom d\'utilisateur ou mot de passe.');
+            $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais nom d\'utilisateur ou mot de passe. <a href="connexion_mdp_oublie">Demander un nouveau mot de passe</a>.');
 
             // And then go back to the last page
             header('Location: /connexion');
