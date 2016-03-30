@@ -45,4 +45,5 @@
         </div>
 
         <button type="submit" class="btn btn-default">Connexion</button>
+    </form>
 </div>
