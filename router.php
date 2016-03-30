@@ -64,4 +64,10 @@
 	$slim->get('/mon_compte', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/mon_compte.php'; })->setName('home');
 	$slim->post('/changer_mdp_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/changer_mdp_submit.php'; })->setName('home');
 
+	$slim->get('/connexion_mdp_oublie', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_mdp_oublie.php'; })->setName('home');
+	$slim->post('/connexion_demande_nouveau_mdp', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/connexion_demande_nouveau_mdp.php'; })->setName('home');
+
+	$slim->get('/connexion_changer_mdp', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_changer_mdp.php'; })->setName('home');
+	$slim->post('/connexion_changer_mdp_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_changer_mdp_submit.php'; })->setName('home');
+
 ?>
