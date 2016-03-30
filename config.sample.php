@@ -14,6 +14,7 @@
         'salaries_per_page' => 20,
         'projets_per_page' => 20,
         'membres_per_page' => 20,
+        'postes_per_page' => 20,
         'devis_per_page' => 20,
 
         'site_url' => 'https://example.com/'

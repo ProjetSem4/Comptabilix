@@ -70,4 +70,12 @@
 	$slim->get('/connexion_changer_mdp', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_changer_mdp.php'; })->setName('home');
 	$slim->post('/connexion_changer_mdp_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_changer_mdp_submit.php'; })->setName('home');
 
+	$slim->get('/postes_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/postes_voir.php'; })->setName('home');
+	$slim->get('/postes_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/postes_visualiser.php'; })->setName('home');
+	
+	$slim->get('/postes_ajouter', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/postes_ajouter.php'; })->setName('home');
+	$slim->post('/postes_ajouter_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/postes_ajouter_submit.php'; })->setName('home');
+
+	$slim->get('/postes_editer', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/postes_editer.php'; })->setName('home');
+	$slim->post('/postes_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/postes_editer_submit.php'; })->setName('home');
 ?>
