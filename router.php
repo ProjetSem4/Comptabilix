@@ -36,10 +36,14 @@
 	$slim->get('/clients_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/clients_visualiser.php'; })->setName('home');
 	
 	$slim->get('/salaries_ajouter', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_ajouter.php'; })->setName('home');
+	$slim->post('/salaries_ajouter_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_ajouter_submit.php'; })->setName('home');
+
+	$slim->get('/salaries_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_editer.php'; })->setName('home');
+	$slim->post('/salaries_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_editer_submit.php'; })->setName('home');
+    
+	$slim->get('/salaries_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/salaries_voir.php'; })->setName('home');
 	
-	$slim->get('/salaries_voir', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_voir.php'; })->setName('home');
-	
-	$slim->get('/salaries_visualiser', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/salaries_visualiser.php'; })->setName('home');
+	$slim->get('/salaries_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/salaries_visualiser.php'; })->setName('home');
 
 	$slim->get('/connexion', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion.php'; })->setName('home');
 	$slim->post('/connexion_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_submit.php'; })->setName('home');
