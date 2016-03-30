@@ -42,7 +42,6 @@
 
             // And send an e-mail with the recovery link
             mail($_POST['mail'], 'Récupération de votre mot de passe', "Bonjour,\nvous (ou quelqu'un d'autre) a demandé la récupération de votre mot de passe Fortitudo pour l'association " . $config['association'] . ".\nPour le changer, rendez-vous sur " . $config['site_url'] . "connexion_changer_mdp?cle=" . $recovery_key . "\n\nCordialement,\nl'équipe Fortitudo.");
-            //die($recovery_key);
 
             $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'Un e-mail contenant un lien de récupération a été envoyé à l\'adresse e-mail indiquée.');
         }
