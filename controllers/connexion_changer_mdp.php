@@ -1,5 +1,12 @@
 <?php
-    $templacat->set_variable("page_title", "Connexion à Fortitudo");
+    // Check if the cle is a passed, and sanitize it
+    if(!isset($_GET['cle']))
+        die('Bad usage. $_GET[cle] should be a number!');
+    else
+        $_GET['cle'] = htmlspecialchars($_GET['cle']);
+
+
+    $templacat->set_variable("page_title", "Changer de mot de passe");
 
     // Show message(s), if needed
     if(isset($_SESSION['fortitudo_messages']) && is_array($_SESSION['fortitudo_messages']))
@@ -25,25 +32,27 @@
     }
 ?>
 <div class="panel panel-default contenu-page">
-    <h1>Connexion à Fortitudo</h1>
+    <h2>Changer de mot de passe</h2>
 
-    <form role="form" method="post" action="connexion_submit">
+    <form role="form" method="post" action="connexion_changer_mdp_submit">
         <div class="form-group col-sm-12">
-            <label for="login">Nom d'utilisateur : </label>
-            <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-user"> </span></div>
-                <input id="login" name="login" type="text" class="form-control" placeholder="Nom d'utilisateur" required>
-            </div>
-        </div>
-
-        <div class="form-group col-sm-12">
-            <label for="password">Mot de passe : </label>
+            <label for="password_n1">Nouveau mot de passe : </label>
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span></div>
-                <input id="password" name="password" type="password" class="form-control" placeholder="Mot de passe" required>
+                <input id="password_n1" name="password_n1" type="password" class="form-control" placeholder="Nouveau mot de passe" required>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default">Connexion</button>
+        <div class="form-group col-sm-12">
+            <label for="password_n2">Nouveau mot de passe (encore) : </label>
+            <div class="input-group">
+                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span></div>
+                <input id="password_n2" name="password_n2" type="password" class="form-control" placeholder="Nouveau mot de passe (encore)" required>
+            </div>
+        </div>
+
+        <input type="hidden" name="cle" value="<?php echo $_GET['cle']; ?>" />
+
+        <button type="submit" class="btn btn-success">Changer le mot de passe</button>
     </form>
 </div>

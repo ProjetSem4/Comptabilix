@@ -93,9 +93,17 @@
                 $query_insert_identifiant->bindParam(':idm', $_POST['id_membre']);
 
                 // We generate a recovery key, so the user will be able to create its own password
-                $query_insert_identifiant->bindParam(':cle', uniqid());
+                $recovery_key = uniqid(rand(), true); // Random, unique
+                $recovery_key = md5($recovery_key); // Unpredictable (mostly...)
+                $recovery_key = substr($recovery_key, 0, mt_rand(15, 23)); // And between 15 and 23 characters
+
+                // Add it to the line
+                $query_insert_identifiant->bindParam(':cle', $recovery_key);
 
                 $query_insert_identifiant->execute();
+
+                // And then send a link to the user
+                mail($_POST['mail'], 'Accès à Fortitudo', "Bonjour,\nvous (ou quelqu'un d'autre) vous a autorisé l'accès au logiciel de comptabilité Fortitudo pour l'association " . $config['association'] . ".\nPour définir votre mot de passe, rendez-vous sur " . $config['site_url'] . "connexion_changer_mdp?cle=" . $recovery_key . "\n\nCordialement,\nl'équipe Fortitudo.");
             }
         }
         

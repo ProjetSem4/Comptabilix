@@ -18,7 +18,7 @@
         $password = $slim->pdo->quote($password);
 
         // Check if the user exists, if the password is right and if he has the right to connect
-        $query = $slim->pdo->query('SELECT V_Identifiant.id_personne, nom, prenom
+        $query = $slim->pdo->query('SELECT V_Identifiant.id_personne, nom, prenom, V_Identifiant.mail
             FROM V_Identifiant
             INNER JOIN V_Membre
             ON V_Identifiant.id_personne = V_Membre.id_personne
@@ -32,7 +32,7 @@
         if($query->rowCount() == 0)
         {
             // Show an error message
-            $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais nom d\'utilisateur ou mot de passe.');
+            $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais nom d\'utilisateur ou mot de passe. <a href="connexion_mdp_oublie">Demander un nouveau mot de passe</a>.');
 
             // And then go back to the last page
             header('Location: /connexion');
@@ -47,7 +47,8 @@
                 (
                     'connected' => true,
                     'name'      => $user_infos['prenom'] . ' ' . $user_infos['nom'],
-                    'id'        => $user_infos['id_personne']
+                    'id'        => $user_infos['id_personne'],
+                    'mail'      => $user_infos['mail']
                 );
 
             // So he can go to the index

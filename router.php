@@ -16,10 +16,10 @@
 	$slim->get('/projet_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/projet_voir.php'; })->setName('home');
 	
 	$slim->get('/membres_ajouter', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_ajouter.php'; })->setName('home');
-	$slim->post('/membres_ajouter_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_ajouter_submit.php'; })->setName('home');
+	$slim->post('/membres_ajouter_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/membres_ajouter_submit.php'; })->setName('home');
 
 	$slim->get('/membres_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_editer.php'; })->setName('home');
-	$slim->post('/membres_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/membres_editer_submit.php'; })->setName('home');
+	$slim->post('/membres_editer_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/membres_editer_submit.php'; })->setName('home');
 
 	$slim->get('/membres_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/membres_voir.php'; })->setName('home');
 	
@@ -60,5 +60,14 @@
 
 	$slim->get('/moa_editer', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_editer.php'; })->setName('home');
 	$slim->post('/moa_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/moa_editer_submit.php'; })->setName('home');
+
+	$slim->get('/mon_compte', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/mon_compte.php'; })->setName('home');
+	$slim->post('/changer_mdp_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/changer_mdp_submit.php'; })->setName('home');
+
+	$slim->get('/connexion_mdp_oublie', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_mdp_oublie.php'; })->setName('home');
+	$slim->post('/connexion_demande_nouveau_mdp', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/connexion_demande_nouveau_mdp.php'; })->setName('home');
+
+	$slim->get('/connexion_changer_mdp', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_changer_mdp.php'; })->setName('home');
+	$slim->post('/connexion_changer_mdp_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/connexion_changer_mdp_submit.php'; })->setName('home');
 
 ?>

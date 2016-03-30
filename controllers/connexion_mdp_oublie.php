@@ -1,5 +1,5 @@
 <?php
-    $templacat->set_variable("page_title", "Connexion à Fortitudo");
+    $templacat->set_variable("page_title", "Retrouver mon mot de passe");
 
     // Show message(s), if needed
     if(isset($_SESSION['fortitudo_messages']) && is_array($_SESSION['fortitudo_messages']))
@@ -25,25 +25,17 @@
     }
 ?>
 <div class="panel panel-default contenu-page">
-    <h1>Connexion à Fortitudo</h1>
+    <h1>Retrouver mon mot de passe</h1>
 
-    <form role="form" method="post" action="connexion_submit">
+    <form role="form" method="post" action="connexion_demande_nouveau_mdp">
         <div class="form-group col-sm-12">
-            <label for="login">Nom d'utilisateur : </label>
+            <label for="mail">Adresse e-mail du compte : </label>
             <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-user"> </span></div>
-                <input id="login" name="login" type="text" class="form-control" placeholder="Nom d'utilisateur" required>
+                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"> </span></div>
+                <input id="mail" name="mail" type="email" class="form-control" placeholder="Adresse e-mail du compte" required>
             </div>
         </div>
 
-        <div class="form-group col-sm-12">
-            <label for="password">Mot de passe : </label>
-            <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-lock"> </span></div>
-                <input id="password" name="password" type="password" class="form-control" placeholder="Mot de passe" required>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-default">Connexion</button>
+        <button type="submit" class="btn btn-default">Demander un nouveau mot de passe</button>
     </form>
 </div>
