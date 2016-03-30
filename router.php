@@ -78,4 +78,13 @@
 
 	$slim->get('/postes_editer', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/postes_editer.php'; })->setName('home');
 	$slim->post('/postes_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/postes_editer_submit.php'; })->setName('home');
+
+	$slim->get('/services_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/services_voir.php'; })->setName('home');
+	$slim->get('/services_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/services_visualiser.php'; })->setName('home');
+	
+	$slim->get('/services_ajouter', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/services_ajouter.php'; })->setName('home');
+	$slim->post('/services_ajouter_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/services_ajouter_submit.php'; })->setName('home');
+
+	$slim->get('/services_editer', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/services_editer.php'; })->setName('home');
+	$slim->post('/services_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/services_editer_submit.php'; })->setName('home');
 ?>
