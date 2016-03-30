@@ -95,7 +95,9 @@
         {
             // Return the parsed version of the template buffer
             // Whereas all the variables are replaced by their content
-            return preg_replace_callback('/\{\{\%([a-z0-9-_]+)\%\}\}/i', 'self::render_callback', $this->tpl_buffer);
+            // We render it twice to also replace variables into variables (such as template variables)
+            $render_1 = preg_replace_callback('/\{\{\%([a-z0-9-_]+)\%\}\}/i', 'self::render_callback', $this->tpl_buffer);
+            return preg_replace_callback('/\{\{\%([a-z0-9-_]+)\%\}\}/i', 'self::render_callback', $render_1);
         }
 
         /**
