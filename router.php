@@ -87,4 +87,12 @@
 
 	$slim->get('/services_editer', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/services_editer.php'; })->setName('home');
 	$slim->post('/services_editer_submit', function($request, $response, $args) use ($templacat, $slim){ include 'controllers/services_editer_submit.php'; })->setName('home');
+
+	$slim->get('/devis_ajouter', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_ajouter.php'; })->setName('home');
+
+	$slim->post('/devis_ajouter_poste_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_ajouter_poste_submit.php'; })->setName('home');
+	$slim->get('/devis_supprimer_poste', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_supprimer_poste.php'; })->setName('home');
+	
+	$slim->post('/devis_ajouter_service_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_ajouter_service_submit.php'; })->setName('home');
+	$slim->get('/devis_supprimer_service', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_supprimer_service.php'; })->setName('home');
 ?>
