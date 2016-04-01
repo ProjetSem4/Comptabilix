@@ -96,4 +96,6 @@
 	
 	$slim->post('/devis_ajouter_service_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_ajouter_service_submit.php'; })->setName('home');
 	$slim->get('/devis_supprimer_service', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_supprimer_service.php'; })->setName('home');
+
+	$slim->get('/devis_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_visualiser.php'; })->setName('home');
 ?>
