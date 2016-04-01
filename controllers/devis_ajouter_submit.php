@@ -53,9 +53,9 @@
                 $query_insert_devis_service = $slim->pdo->prepare('INSERT INTO TJ_Devis_Service VALUES (:idd, :ids, :dd, :df)');
 
                 $query_insert_devis_service->bindParam(':idd', $devis_id);
-                $query_insert_devis_service->bindParam(':ids', $poste['id_service']);
-                $query_insert_devis_service->bindParam(':dd', date('Y-m-d', $poste['date_debut']));
-                $query_insert_devis_service->bindParam(':df', ($poste['date_fin'] == '' ? null : date('Y-m-d', $poste['date_fin'])));
+                $query_insert_devis_service->bindParam(':ids', $service['id_service']);
+                $query_insert_devis_service->bindParam(':dd', date('Y-m-d', $service['date_debut']));
+                $query_insert_devis_service->bindParam(':df', ($service['date_fin'] == '' ? null : date('Y-m-d', $service['date_fin'])));
 
                 $query_insert_devis_service->execute();
             }
