@@ -164,7 +164,7 @@
                 file_put_contents('../config.php', $config_file);
 
                 // And finally delete the install/ folder
-                rmdir('../install/');
+                rmdir_recursive('../install/');
 
                 // Message to say that everything's fine
                 $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'L\'installation s\'est déroulée avec succès. Vous pouvez maintenant vous connecter.');
@@ -216,6 +216,17 @@
         $data = $query_match->fetch();
 
         return $data['id_personne'];
+    }
+
+    // Function used to delete the install/ folder
+    // Thanks to http://stackoverflow.com/a/7288067/5664392
+    function rmdir_recursive($dir) {
+        foreach(scandir($dir) as $file) {
+            if ('.' === $file || '..' === $file) continue;
+            if (is_dir($dir . '/' . $file)) rmdir_recursive($dir . '/' . $file);
+            else unlink($dir . '/' . $file);
+        }
+        rmdir($dir);
     }
 
     header('Location: ../');
