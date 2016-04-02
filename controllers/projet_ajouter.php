@@ -41,7 +41,7 @@
             <label for="id_client">Entreprise cliente :</label>
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
-                <select class="form-control" id="id_client" name="id_client" required>
+                <select class="form-control" id="id_client" name="id_client" onchange="filter_moa(this.value)" required>
                     <?php
                         $query_list_societes = $slim->pdo->query('SELECT id_personne, raison_sociale FROM ' . $config['db_prefix'] . 'V_Societe ORDER BY raison_sociale ASC');
                         
@@ -60,11 +60,15 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select class="form-control" id="id_moa" name="id_moa" required>
                     <?php
-                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM ' . $config['db_prefix'] . 'V_MOA ORDER BY prenom, nom ASC');
+                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom, id_societe
+                                                            FROM ' . $config['db_prefix'] . 'V_MOA as VM
+                                                            INNER JOIN ' . $config['db_prefix'] . 'TJ_Societe_MOA as TSM
+                                                            ON VM.id_personne = TSM.id_MOA
+                                                            ORDER BY prenom, nom ASC');
                         
                         while($line = $query_list_moa->fetch())
                         {
-                            echo '<option value="' . $line['id_personne'] . '">' . $line['prenom'] . ' ' . $line['nom'] . '</option>';
+                            echo '<option value="' . $line['id_personne'] . '" class="client_' . $line['id_societe'] . '">' . $line['prenom'] . ' ' . $line['nom'] . '</option>';
                         }
                     ?>
                 </select>
@@ -91,3 +95,4 @@
         <button type="submit" class="btn btn-success">Ajouter le projet</button>
     </form>
 </div>
+<script src="template/filter_moa.js"></script>
