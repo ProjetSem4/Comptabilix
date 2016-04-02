@@ -2,7 +2,7 @@
     $templacat->set_variable("page_title", "Voir les paiements");
 ?>
 <div class="panel panel-default contenu-page">
-    <h1>Gestion des paiements <a class="btn btn-success pull-right" href="paiement_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un paiement</a></h1>
+    <h1>Gestion des paiements <a class="btn btn-success pull-right" href="paiements_ajouter"><span class="glyphicon glyphicon-plus"></span> Ajouter un paiement</a></h1>
     <p>Retrouvez ici l'ensemble des paiements effectués à votre association.</p>
     
     <table class="table table-hover">
