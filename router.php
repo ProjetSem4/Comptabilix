@@ -1,9 +1,6 @@
 <?php
     // [TEMP] Our homepage
     $slim->get('/', function($request, $response, $args) use ($templacat, $slim, $config) { include 'controllers/homepage.php'; })->setName('home');
-
-    // Installation wizard
-    $slim->get('/install', function($request, $response, $args) use ($templacat, $slim, $config) { include 'controllers/install.php'; })->setName('home');
 	
 	$slim->get('/projet_ajouter', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/projet_ajouter.php'; })->setName('home');
 	$slim->post('/projet_ajouter_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/projet_ajouter_submit.php'; })->setName('home');
