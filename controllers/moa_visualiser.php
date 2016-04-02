@@ -46,11 +46,11 @@
     <table class="table">
         <?php
             // List all the clients corresponding to the MOA
-            $query_clients = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Societe.id_personne, ' . $config['db_prefix'] . 'V_Societe.raison_sociale, TJ_Societe_MOA.titre
-                                                FROM TJ_Societe_MOA
+            $query_clients = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Societe.id_personne, ' . $config['db_prefix'] . 'V_Societe.raison_sociale, ' . $config['db_prefix'] . 'TJ_Societe_MOA.titre
+                                                FROM ' . $config['db_prefix'] . 'TJ_Societe_MOA
                                                 INNER JOIN ' . $config['db_prefix'] . 'V_Societe
-                                                ON TJ_Societe_MOA.id_societe = ' . $config['db_prefix'] . 'V_Societe.id_personne
-                                                WHERE TJ_Societe_MOA.id_MOA = ' . $_GET['id'] . '
+                                                ON ' . $config['db_prefix'] . 'TJ_Societe_MOA.id_societe = ' . $config['db_prefix'] . 'V_Societe.id_personne
+                                                WHERE ' . $config['db_prefix'] . 'TJ_Societe_MOA.id_MOA = ' . $_GET['id'] . '
                                                 ORDER BY ' . $config['db_prefix'] . 'V_Societe.id_personne DESC');
 
             // If none is found

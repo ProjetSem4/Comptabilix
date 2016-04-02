@@ -6,7 +6,7 @@
     // If everything's good
     else
     {
-        $query_update_devis_service = $slim->pdo->prepare('UPDATE TJ_Devis_Service SET date_fin = :df WHERE num_devis = :nd AND num_service = :ns');
+        $query_update_devis_service = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'TJ_Devis_Service SET date_fin = :df WHERE num_devis = :nd AND num_service = :ns');
         $query_update_devis_service->bindParam(':df', date('Y-m-d'));
         $query_update_devis_service->bindParam(':nd', $_GET['did']);
         $query_update_devis_service->bindParam(':ns', $_GET['sid']);

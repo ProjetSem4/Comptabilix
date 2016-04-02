@@ -15,7 +15,7 @@
     $line = $query->fetch();
 
     // Get all the MOE
-    $query_moe = $slim->pdo->query('SELECT id_membre FROM TJ_Membre_Projet WHERE num_projet = ' . $_GET['id']);
+    $query_moe = $slim->pdo->query('SELECT id_membre FROM ' . $config['db_prefix'] . 'TJ_Membre_Projet WHERE num_projet = ' . $_GET['id']);
     $lines_moe = $query_moe->fetchAll();
 
     // Show message(s), if needed

@@ -33,8 +33,8 @@
             // Do the query
             $query = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Salarie.id_personne, nom, prenom, count(T_Devis.num_devis) as nb_projets
                 FROM ' . $config['db_prefix'] . 'V_Salarie
-                LEFT JOIN TJ_Devis_Salarie_Poste ON ' . $config['db_prefix'] . 'V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
-                LEFT JOIN ' . $config['db_prefix'] . 'T_Devis ON TJ_Devis_Salarie_Poste.num_devis = ' . $config['db_prefix'] . 'T_Devis.num_devis
+                LEFT JOIN ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste ON ' . $config['db_prefix'] . 'V_Salarie.id_personne = ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.id_personne
+                LEFT JOIN ' . $config['db_prefix'] . 'T_Devis ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_devis = ' . $config['db_prefix'] . 'T_Devis.num_devis
                 WHERE ' . $config['db_prefix'] . 'T_Devis.est_accepte = 1 OR ' . $config['db_prefix'] . 'T_Devis.est_accepte IS NULL
                 GROUP BY id_personne
                 ORDER BY id_personne DESC

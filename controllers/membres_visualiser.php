@@ -75,8 +75,8 @@
 		<?php
 			// List all the projets for the corresponding member
 			$query_projets = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'T_Projet.num_projet, titre_projet
-				FROM TJ_Membre_Projet
-				INNER JOIN ' . $config['db_prefix'] . 'T_Projet ON TJ_Membre_Projet.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
+				FROM ' . $config['db_prefix'] . 'TJ_Membre_Projet
+				INNER JOIN ' . $config['db_prefix'] . 'T_Projet ON ' . $config['db_prefix'] . 'TJ_Membre_Projet.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
 				WHERE id_membre = ' . $_GET['id'] . '
 				ORDER BY num_projet DESC'
 			) or die(var_dump($slim->pdo->errorInfo()));

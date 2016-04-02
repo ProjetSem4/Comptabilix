@@ -32,7 +32,7 @@
         {
             foreach($_SESSION['tmp']['devis_postes_' . $_GET['pid']] as $poste)
             {
-                $query_insert_devis_poste = $slim->pdo->prepare('INSERT INTO TJ_Devis_Salarie_Poste VALUES (:idp, :idd, :ids, :nbh)');
+                $query_insert_devis_poste = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste VALUES (:idp, :idd, :ids, :nbh)');
 
                 $query_insert_devis_poste->bindParam(':idp', $poste['id_poste']);
                 $query_insert_devis_poste->bindParam(':idd', $devis_id);
@@ -50,7 +50,7 @@
         {
             foreach($_SESSION['tmp']['devis_services_' . $_GET['pid']] as $service)
             {
-                $query_insert_devis_service = $slim->pdo->prepare('INSERT INTO TJ_Devis_Service VALUES (:idd, :ids, :dd, :df)');
+                $query_insert_devis_service = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'TJ_Devis_Service VALUES (:idd, :ids, :dd, :df)');
 
                 $query_insert_devis_service->bindParam(':idd', $devis_id);
                 $query_insert_devis_service->bindParam(':ids', $service['id_service']);
