@@ -26,7 +26,7 @@
         $_POST = clean_post($_POST);
 
         // Then we insert the service
-        $query_insert_t_service = $slim->pdo->prepare('UPDATE T_Service SET libelle = :lib, tarif_mensuel = :th WHERE num_service = :np');
+        $query_insert_t_service = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_Service SET libelle = :lib, tarif_mensuel = :th WHERE num_service = :np');
 
         // Again, bind the POST data to the prepare() variables
         $query_insert_t_service->bindParam(':lib', $_POST['libelle']);

@@ -106,7 +106,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select class="form-control" id="id_moa" name="id_moa" required>
                     <?php
-                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM V_MOA ORDER BY prenom, nom ASC');
+                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM ' . $config['db_prefix'] . 'V_MOA ORDER BY prenom, nom ASC');
                         
                         while($line = $query_list_moa->fetch())
                         {

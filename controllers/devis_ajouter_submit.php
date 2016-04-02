@@ -16,7 +16,7 @@
     else
     {
         // Start by inserting a new devis
-        $query_insert_devis = $slim->pdo->prepare('INSERT INTO T_Devis (date_emission, est_accepte, date_acceptation, num_projet) VALUES (:de, 0, NULL, :np)');
+        $query_insert_devis = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Devis (date_emission, est_accepte, date_acceptation, num_projet) VALUES (:de, 0, NULL, :np)');
 
         $query_insert_devis->bindParam(':de', date('Y-m-d'));
         $query_insert_devis->bindParam(':np', $_GET['pid']);
@@ -24,7 +24,7 @@
         $query_insert_devis->execute();
 
         // Now get the id of newly inserted line
-        $query_id_new_devis = $slim->pdo->query('SELECT max(num_devis) as nid FROM T_Devis WHERE num_projet = ' . $slim->pdo->quote($_GET['pid']));
+        $query_id_new_devis = $slim->pdo->query('SELECT max(num_devis) as nid FROM ' . $config['db_prefix'] . 'T_Devis WHERE num_projet = ' . $slim->pdo->quote($_GET['pid']));
         $devis_id = $query_id_new_devis->fetch()['nid'];
 
         // Then insert each poste (if any)

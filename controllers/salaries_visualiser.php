@@ -1,4 +1,4 @@
-<?php
+ <?php
 	// Check if the id is a number, and sanitize it
 	if(!is_numeric($_GET['id']))
 		die('Bad usage. $_GET[id] should be a number!');
@@ -6,7 +6,7 @@
 		$_GET['id'] = $slim->pdo->quote($_GET['id']);
 
 	// Query the database
-	$query = $slim->pdo->query('SELECT * FROM V_Salarie WHERE id_personne = ' . $_GET['id']);
+	$query = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'V_Salarie WHERE id_personne = ' . $_GET['id']);
 
 	// Check if the id is valid
 	if($query->rowCount() < 1)
@@ -52,13 +52,13 @@
 					T_Projet.titre_projet, 
 					T_Poste.libelle, 
 					T_Poste.tarif_horaire * TJ_Devis_Salarie_Poste.nbr_heures AS paie
-				FROM V_Salarie
-				INNER JOIN TJ_Devis_Salarie_Poste ON V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
-				INNER JOIN T_Devis ON TJ_Devis_Salarie_Poste.num_devis = T_Devis.num_devis
-				INNER JOIN T_Poste ON TJ_Devis_Salarie_Poste.num_poste = T_Poste.num_poste
-				INNER JOIN T_Projet ON T_Devis.num_projet = T_Projet.num_projet
-				WHERE T_Devis.est_accepte = 1 AND V_Salarie.id_personne = ' . $_GET['id'] . '
-				ORDER BY T_Devis.date_acceptation DESC
+				FROM ' . $config['db_prefix'] . 'V_Salarie
+				INNER JOIN TJ_Devis_Salarie_Poste ON ' . $config['db_prefix'] . 'V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
+				INNER JOIN ' . $config['db_prefix'] . 'T_Devis ON TJ_Devis_Salarie_Poste.num_devis = ' . $config['db_prefix'] . 'T_Devis.num_devis
+				INNER JOIN ' . $config['db_prefix'] . 'T_Poste ON TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
+				INNER JOIN ' . $config['db_prefix'] . 'T_Projet ON ' . $config['db_prefix'] . 'T_Devis.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
+				WHERE ' . $config['db_prefix'] . 'T_Devis.est_accepte = 1 AND ' . $config['db_prefix'] . 'V_Salarie.id_personne = ' . $_GET['id'] . '
+				ORDER BY ' . $config['db_prefix'] . 'T_Devis.date_acceptation DESC
 			');
 
 			// If none is found

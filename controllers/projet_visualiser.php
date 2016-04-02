@@ -6,10 +6,10 @@
 		$_GET['id'] = $slim->pdo->quote($_GET['id']);
 
 	// Query the database
-	$query = $slim->pdo->query('SELECT T_Projet.*, V_MOA.id_personne AS id_moa, V_MOA.nom, V_MOA.prenom, V_Societe.raison_sociale, V_Societe.id_personne as id_societe
-								FROM T_Projet
-								INNER JOIN V_MOA ON T_Projet.id_MOA = V_MOA.id_personne
-								INNER JOIN V_Societe ON T_Projet.id_Societe = V_Societe.id_personne
+	$query = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'T_Projet.*, ' . $config['db_prefix'] . 'V_MOA.id_personne AS id_moa, ' . $config['db_prefix'] . 'V_MOA.nom, ' . $config['db_prefix'] . 'V_MOA.prenom, ' . $config['db_prefix'] . 'V_Societe.raison_sociale, ' . $config['db_prefix'] . 'V_Societe.id_personne as id_societe
+								FROM ' . $config['db_prefix'] . 'T_Projet
+								INNER JOIN ' . $config['db_prefix'] . 'V_MOA ON ' . $config['db_prefix'] . 'T_Projet.id_MOA = ' . $config['db_prefix'] . 'V_MOA.id_personne
+								INNER JOIN ' . $config['db_prefix'] . 'V_Societe ON ' . $config['db_prefix'] . 'T_Projet.id_Societe = ' . $config['db_prefix'] . 'V_Societe.id_personne
 								WHERE num_projet = ' . $_GET['id']);
 
 	// Check if the id is valid
@@ -73,9 +73,9 @@
 	<table class="table">
 		<?php
 			// List all the MOE for the corresponding projet
-			$query_moe = $slim->pdo->query('SELECT V_Membre.id_personne, V_Membre.nom, V_Membre.prenom
-				FROM V_Membre
-				INNER JOIN TJ_Membre_Projet ON V_Membre.id_personne = TJ_Membre_Projet.id_membre
+			$query_moe = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Membre.id_personne, ' . $config['db_prefix'] . 'V_Membre.nom, ' . $config['db_prefix'] . 'V_Membre.prenom
+				FROM ' . $config['db_prefix'] . 'V_Membre
+				INNER JOIN TJ_Membre_Projet ON ' . $config['db_prefix'] . 'V_Membre.id_personne = TJ_Membre_Projet.id_membre
 				WHERE TJ_Membre_Projet.num_projet = ' . $_GET['id'] .'
 				ORDER BY prenom, nom ASC');
 	
@@ -106,7 +106,7 @@
 		<?php
 			// List all the quotations for the corresponding projet
 			$query_quotations = $slim->pdo->query('SELECT *
-				FROM T_Devis
+				FROM ' . $config['db_prefix'] . 'T_Devis
 				WHERE num_projet = ' . $_GET['id'] .'
 				ORDER BY date_emission DESC');
 	

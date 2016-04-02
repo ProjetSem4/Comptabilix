@@ -6,7 +6,7 @@
         $_GET['id'] = $slim->pdo->quote($_GET['id']);
 
     // Query the database
-    $query = $slim->pdo->query('SELECT * FROM V_MOA WHERE id_personne = ' . $_GET['id']);
+    $query = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'V_MOA WHERE id_personne = ' . $_GET['id']);
 
     // Check if the id is valid
     if($query->rowCount() < 1)
@@ -46,12 +46,12 @@
     <table class="table">
         <?php
             // List all the clients corresponding to the MOA
-            $query_clients = $slim->pdo->query('SELECT V_Societe.id_personne, V_Societe.raison_sociale, TJ_Societe_MOA.titre
+            $query_clients = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Societe.id_personne, ' . $config['db_prefix'] . 'V_Societe.raison_sociale, TJ_Societe_MOA.titre
                                                 FROM TJ_Societe_MOA
-                                                INNER JOIN V_Societe
-                                                ON TJ_Societe_MOA.id_societe = V_Societe.id_personne
+                                                INNER JOIN ' . $config['db_prefix'] . 'V_Societe
+                                                ON TJ_Societe_MOA.id_societe = ' . $config['db_prefix'] . 'V_Societe.id_personne
                                                 WHERE TJ_Societe_MOA.id_MOA = ' . $_GET['id'] . '
-                                                ORDER BY V_Societe.id_personne DESC');
+                                                ORDER BY ' . $config['db_prefix'] . 'V_Societe.id_personne DESC');
 
             // If none is found
             if($query_clients->rowCount() < 1)

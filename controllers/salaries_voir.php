@@ -23,7 +23,7 @@
             $start_limit = ($page - 1) * $config['salaries_per_page'];
 
             // See how many salariés there is in the database
-            $query_nbr_salarie = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM V_Salarie');
+            $query_nbr_salarie = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM ' . $config['db_prefix'] . 'V_Salarie');
             $nbr_salarie = $query_nbr_salarie->fetch();
             $nbr_salarie = $nbr_salarie['nb_personnes'];
 
@@ -31,11 +31,11 @@
             $number_of_pages = ceil($nbr_salarie / $config['salaries_per_page']);
 
             // Do the query
-            $query = $slim->pdo->query('SELECT V_Salarie.id_personne, nom, prenom, count(T_Devis.num_devis) as nb_projets
-                FROM V_Salarie
-                LEFT JOIN TJ_Devis_Salarie_Poste ON V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
-                LEFT JOIN T_Devis ON TJ_Devis_Salarie_Poste.num_devis = T_Devis.num_devis
-                WHERE T_Devis.est_accepte = 1 OR T_Devis.est_accepte IS NULL
+            $query = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Salarie.id_personne, nom, prenom, count(T_Devis.num_devis) as nb_projets
+                FROM ' . $config['db_prefix'] . 'V_Salarie
+                LEFT JOIN TJ_Devis_Salarie_Poste ON ' . $config['db_prefix'] . 'V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
+                LEFT JOIN ' . $config['db_prefix'] . 'T_Devis ON TJ_Devis_Salarie_Poste.num_devis = ' . $config['db_prefix'] . 'T_Devis.num_devis
+                WHERE ' . $config['db_prefix'] . 'T_Devis.est_accepte = 1 OR ' . $config['db_prefix'] . 'T_Devis.est_accepte IS NULL
                 GROUP BY id_personne
                 ORDER BY id_personne DESC
                 LIMIT ' . $start_limit . ', ' . $config['salaries_per_page']);

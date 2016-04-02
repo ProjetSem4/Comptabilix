@@ -22,7 +22,7 @@
             $start_limit = ($page - 1) * $config['membres_per_page'];
 
             // See how many membres there is in the database
-            $query_nbr_membre = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM V_Membre');
+            $query_nbr_membre = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM ' . $config['db_prefix'] . 'V_Membre');
             $nbr_membre = $query_nbr_membre->fetch();
             $nbr_membre = $nbr_membre['nb_personnes'];
 
@@ -31,8 +31,8 @@
 
             // Do the query
             $query = $slim->pdo->query('SELECT id_personne, nom, prenom, COUNT(num_projet) as nb_projets
-                FROM V_Membre
-                LEFT JOIN TJ_Membre_Projet ON V_Membre.id_personne = TJ_Membre_Projet.id_membre
+                FROM ' . $config['db_prefix'] . 'V_Membre
+                LEFT JOIN TJ_Membre_Projet ON ' . $config['db_prefix'] . 'V_Membre.id_personne = TJ_Membre_Projet.id_membre
                 GROUP BY id_personne
                 ORDER BY id_personne DESC
                 LIMIT ' . $start_limit . ', ' . $config['membres_per_page']);

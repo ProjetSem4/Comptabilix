@@ -30,7 +30,7 @@
         $_POST = clean_post($_POST);
 
         // Then update the t_personne informations
-        $query_update_t_personne = $slim->pdo->prepare('UPDATE T_Personne
+        $query_update_t_personne = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_Personne
             SET adresse = :adresse,
             code_postal = :cp,
             ville = :ville,
@@ -50,7 +50,7 @@
         $query_update_t_personne->execute();
 
         // Then update the raison_sociale into the database
-        $query_update_societe = $slim->pdo->prepare('UPDATE T_personne_physique SET nom = :nom, prenom = :prenom WHERE id_personne = :idp');
+        $query_update_societe = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_personne_physique SET nom = :nom, prenom = :prenom WHERE id_personne = :idp');
         
         $query_update_societe->bindParam(':idp', $_POST['id_salarie']);
         $query_update_societe->bindParam(':prenom', $_POST['prenom']);

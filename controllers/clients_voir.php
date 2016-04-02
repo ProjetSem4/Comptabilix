@@ -42,7 +42,7 @@
             $start_limit = ($page - 1) * $config['clients_per_page'];
 
             // See how many clients there is in the database
-            $query_nbr_client = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM V_Societe');
+            $query_nbr_client = $slim->pdo->query('SELECT count(id_personne) as nb_personnes FROM ' . $config['db_prefix'] . 'V_Societe');
             $nbr_client = $query_nbr_client->fetch();
             $nbr_client = $nbr_client['nb_personnes'];
 
@@ -52,8 +52,8 @@
             // Do the query
             $query = $slim->pdo->query('
                 SELECT id_personne, raison_sociale, COUNT(num_projet) as nb_projets
-                FROM V_Societe
-                LEFT JOIN T_Projet ON V_Societe.id_personne = T_Projet.id_societe
+                FROM ' . $config['db_prefix'] . 'V_Societe
+                LEFT JOIN ' . $config['db_prefix'] . 'T_Projet ON ' . $config['db_prefix'] . 'V_Societe.id_personne = ' . $config['db_prefix'] . 'T_Projet.id_societe
                 GROUP BY id_personne
                 ORDER BY id_personne DESC
                 LIMIT ' . $start_limit . ', ' . $config['clients_per_page']);

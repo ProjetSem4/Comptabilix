@@ -15,7 +15,7 @@
     else
     {
         // Check if the mail is in the database
-        $query_validation_mail = $slim->pdo->prepare('SELECT id_personne FROM V_Identifiant WHERE mail = :mail');
+        $query_validation_mail = $slim->pdo->prepare('SELECT id_personne FROM ' . $config['db_prefix'] . 'V_Identifiant WHERE mail = :mail');
         $query_validation_mail->bindParam(':mail', $_POST['mail']);
         $query_validation_mail->execute();
 
@@ -35,7 +35,7 @@
             $recovery_key = substr($recovery_key, 0, mt_rand(15, 23)); // And between 15 and 23 characters
 
             // Save it to the database
-            $query_set_recovery_key = $slim->pdo->prepare('UPDATE T_Identifiant SET cle_recuperation = :key WHERE id_membre = :idm');
+            $query_set_recovery_key = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_Identifiant SET cle_recuperation = :key WHERE id_membre = :idm');
             $query_set_recovery_key->bindParam(':key', $recovery_key);
             $query_set_recovery_key->bindParam(':idm', $id_membre);
             $query_set_recovery_key->execute();

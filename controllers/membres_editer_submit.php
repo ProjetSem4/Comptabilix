@@ -34,7 +34,7 @@
         $_POST = clean_post($_POST);
 
         // Then update the t_personne informations
-        $query_update_t_personne = $slim->pdo->prepare('UPDATE T_Personne
+        $query_update_t_personne = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_Personne
             SET adresse = :adresse,
             code_postal = :cp,
             ville = :ville,
@@ -54,7 +54,7 @@
         $query_update_t_personne->execute();
 
         // Then update the first and last names into the database
-        $query_update_personne_physique = $slim->pdo->prepare('UPDATE T_personne_physique SET nom = :nom, prenom = :prenom WHERE id_personne = :idp');
+        $query_update_personne_physique = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_personne_physique SET nom = :nom, prenom = :prenom WHERE id_personne = :idp');
         
         $query_update_personne_physique->bindParam(':idp', $_POST['id_membre']);
         $query_update_personne_physique->bindParam(':prenom', $_POST['prenom']);
@@ -63,7 +63,7 @@
         $query_update_personne_physique->execute();
 
         // Same for the « actif » boolean
-        $query_update_membre = $slim->pdo->prepare('UPDATE T_Membre SET actif = :actif WHERE id_personne = :idp');
+        $query_update_membre = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_Membre SET actif = :actif WHERE id_personne = :idp');
         
         $query_update_membre->bindParam(':idp', $_POST['id_membre']);
         $query_update_membre->bindParam(':actif', $_POST['actif']);
@@ -74,13 +74,13 @@
 
         // If we don't want the user to have an access to fortitudo, we just delete the row
         if($_POST['access'] == 0)
-            $slim->pdo->query('DELETE FROM T_Identifiant WHERE id_membre = ' . $slim->pdo->quote($_POST['id_membre']));
+            $slim->pdo->query('DELETE FROM ' . $config['db_prefix'] . 'T_Identifiant WHERE id_membre = ' . $slim->pdo->quote($_POST['id_membre']));
 
         // Otherwise
         else
         {
             // Check if the user already have a password
-            $query_select_identifiant = $slim->pdo->prepare('SELECT num_identifiant FROM T_Identifiant WHERE id_membre = :idm');
+            $query_select_identifiant = $slim->pdo->prepare('SELECT num_identifiant FROM ' . $config['db_prefix'] . 'T_Identifiant WHERE id_membre = :idm');
             $query_select_identifiant->bindParam(':idm', $_POST['id_membre']);
             $query_select_identifiant->execute();
 
@@ -88,7 +88,7 @@
             if($query_select_identifiant->rowCount() < 1)
             {
                 // Then add a new row
-                $query_insert_identifiant = $slim->pdo->prepare('INSERT INTO T_Identifiant (mot_de_passe, cle_recuperation, id_membre) VALUES("", :cle, :idm)');
+                $query_insert_identifiant = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Identifiant (mot_de_passe, cle_recuperation, id_membre) VALUES("", :cle, :idm)');
 
                 $query_insert_identifiant->bindParam(':idm', $_POST['id_membre']);
 
@@ -118,7 +118,7 @@
 
         // First, check if a matching « personne » is already in the database
         $query_match = $slim->pdo->prepare('SELECT id_personne
-            FROM T_Personne
+            FROM ' . $config['db_prefix'] . 'T_Personne
             WHERE
                 adresse = :adresse AND
                 code_postal = :cp AND

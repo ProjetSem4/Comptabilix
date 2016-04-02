@@ -6,7 +6,7 @@
         $_GET['pid'] = $slim->pdo->quote($_GET['pid']);
 
     // Query the database
-    $query = $slim->pdo->query('SELECT * FROM T_Projet WHERE num_projet = ' . $_GET['pid']);
+    $query = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'T_Projet WHERE num_projet = ' . $_GET['pid']);
 
     // Check if the id is valid
     if($query->rowCount() < 1)
@@ -53,10 +53,10 @@
 
                 foreach($_SESSION['tmp']['devis_postes_' . $line['num_projet']] as $id_ligne => $ligne_poste)
                 {
-                    $query_select_poste = $slim->pdo->query('SELECT * FROM T_Poste WHERE num_poste = ' . $slim->pdo->quote($ligne_poste['id_poste']));
+                    $query_select_poste = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'T_Poste WHERE num_poste = ' . $slim->pdo->quote($ligne_poste['id_poste']));
                     $res_select_poste = $query_select_poste->fetch();
 
-                    $query_select_salarie = $slim->pdo->query('SELECT * FROM V_Salarie WHERE id_personne = ' . $slim->pdo->quote($ligne_poste['id_salarie']));
+                    $query_select_salarie = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'V_Salarie WHERE id_personne = ' . $slim->pdo->quote($ligne_poste['id_salarie']));
                     $res_select_salarie = $query_select_salarie->fetch();
 
                     echo '<tr>
@@ -86,7 +86,7 @@
 
                 foreach($_SESSION['tmp']['devis_services_' . $line['num_projet']] as $id_ligne => $ligne_service)
                 {
-                    $query_select_service = $slim->pdo->query('SELECT * FROM T_Service WHERE num_service = ' . $slim->pdo->quote($ligne_service['id_service']));
+                    $query_select_service = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'T_Service WHERE num_service = ' . $slim->pdo->quote($ligne_service['id_service']));
                     $res_select_service = $query_select_service->fetch();
 
                     echo '<tr>
@@ -114,7 +114,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-file"></span></div>
                 <select id="poste" name="poste" class="form-control" required>
                     <?php
-                        $query_list_postes = $slim->pdo->query('SELECT * FROM T_Poste ORDER BY libelle ASC');
+                        $query_list_postes = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'T_Poste ORDER BY libelle ASC');
                         while($poste = $query_list_postes->fetch())
                         {
                             echo '<option value="' . $poste['num_poste'] . '">' . $poste['libelle'] . ' (' . $poste['tarif_horaire'] . ' ' . $config['currency'] . '/heure)</option>';
@@ -130,7 +130,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select id="salarie" name="salarie" class="form-control" required>
                     <?php
-                        $query_list_salaries = $slim->pdo->query('SELECT id_personne, prenom, nom FROM V_Salarie ORDER BY prenom, nom ASC');
+                        $query_list_salaries = $slim->pdo->query('SELECT id_personne, prenom, nom FROM ' . $config['db_prefix'] . 'V_Salarie ORDER BY prenom, nom ASC');
                         while($salarie = $query_list_salaries->fetch())
                         {
                             echo '<option value="' . $salarie['id_personne'] . '">' . $salarie['prenom'] . ' ' . $salarie['nom'] . '</option>';
@@ -161,7 +161,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-file"></span></div>
                 <select id="service" name="service" class="form-control" required>
                     <?php
-                        $query_list_services = $slim->pdo->query('SELECT * FROM T_Service ORDER BY libelle ASC');
+                        $query_list_services = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'T_Service ORDER BY libelle ASC');
                         while($service = $query_list_services->fetch())
                         {
                             echo '<option value="' . $service['num_service'] . '">' . $service['libelle'] . ' (' . $service['tarif_mensuel'] . ' ' . $config['currency'] . '/mois)</option>';

@@ -22,7 +22,7 @@
             $start_limit = ($page - 1) * $config['services_per_page'];
 
             // See how many services there is in the database
-            $query_nbr_service = $slim->pdo->query('SELECT count(num_service) as nb_services FROM T_Service');
+            $query_nbr_service = $slim->pdo->query('SELECT count(num_service) as nb_services FROM ' . $config['db_prefix'] . 'T_Service');
             $nbr_service = $query_nbr_service->fetch();
             $nbr_service = $nbr_service['nb_services'];
 
@@ -31,7 +31,7 @@
 
             // Do the query
             $query = $slim->pdo->query('SELECT num_service, libelle, tarif_mensuel
-                FROM T_Service
+                FROM ' . $config['db_prefix'] . 'T_Service
                 ORDER BY num_service DESC
                 LIMIT ' . $start_limit . ', ' . $config['services_per_page']);
 

@@ -18,14 +18,14 @@
         $password = $slim->pdo->quote($password);
 
         // Check if the user exists, if the password is right and if he has the right to connect
-        $query = $slim->pdo->query('SELECT V_Identifiant.id_personne, nom, prenom, V_Identifiant.mail
-            FROM V_Identifiant
-            INNER JOIN V_Membre
-            ON V_Identifiant.id_personne = V_Membre.id_personne
+        $query = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Identifiant.id_personne, nom, prenom, ' . $config['db_prefix'] . 'V_Identifiant.mail
+            FROM ' . $config['db_prefix'] . 'V_Identifiant
+            INNER JOIN ' . $config['db_prefix'] . 'V_Membre
+            ON ' . $config['db_prefix'] . 'V_Identifiant.id_personne = ' . $config['db_prefix'] . 'V_Membre.id_personne
             WHERE
-                V_Identifiant.mail = ' . $login . ' AND 
+                ' . $config['db_prefix'] . 'V_Identifiant.mail = ' . $login . ' AND 
                 mot_de_passe = ' . $password . ' AND
-                V_Identifiant.actif = 1 AND
+                ' . $config['db_prefix'] . 'V_Identifiant.actif = 1 AND
                 cle_recuperation IS NULL');
 
         // If nothing was found

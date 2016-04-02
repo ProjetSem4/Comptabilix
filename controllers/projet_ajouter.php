@@ -43,7 +43,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
                 <select class="form-control" id="id_client" name="id_client" required>
                     <?php
-                        $query_list_societes = $slim->pdo->query('SELECT id_personne, raison_sociale FROM V_Societe ORDER BY raison_sociale ASC');
+                        $query_list_societes = $slim->pdo->query('SELECT id_personne, raison_sociale FROM ' . $config['db_prefix'] . 'V_Societe ORDER BY raison_sociale ASC');
                         
                         while($line = $query_list_societes->fetch())
                         {
@@ -60,7 +60,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select class="form-control" id="id_moa" name="id_moa" required>
                     <?php
-                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM V_MOA ORDER BY prenom, nom ASC');
+                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM ' . $config['db_prefix'] . 'V_MOA ORDER BY prenom, nom ASC');
                         
                         while($line = $query_list_moa->fetch())
                         {
@@ -76,7 +76,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select class="form-control" id="id_moe" name="id_moe[]" required multiple>
                     <?php
-                        $query_list_moe = $slim->pdo->query('SELECT id_personne, nom, prenom FROM V_Membre ORDER BY prenom, nom ASC');
+                        $query_list_moe = $slim->pdo->query('SELECT id_personne, nom, prenom FROM ' . $config['db_prefix'] . 'V_Membre ORDER BY prenom, nom ASC');
                         
                         while($line = $query_list_moe->fetch())
                         {

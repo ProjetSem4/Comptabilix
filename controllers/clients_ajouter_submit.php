@@ -32,7 +32,7 @@
         if($t_personne_id === false)
         {
             // Then we insert the user
-            $query_insert_t_personne = $slim->pdo->prepare('INSERT INTO T_Personne (adresse, code_postal, ville, telephone, mail) 
+            $query_insert_t_personne = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Personne (adresse, code_postal, ville, telephone, mail) 
                                                             VALUES (:adresse, :cp, :ville, :tel, :email)');
 
             // Again, bind the POST data to the prepare() variables
@@ -55,7 +55,7 @@
         else
         {
             // The insert the raison_sociale into the database
-            $query_insert_societe = $slim->pdo->prepare('INSERT INTO T_Societe VALUES (:id, :rs)');
+            $query_insert_societe = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Societe VALUES (:id, :rs)');
             
             $query_insert_societe->bindParam(':id', $t_personne_id);
             $query_insert_societe->bindParam(':rs', $_POST['rs']);
@@ -74,7 +74,7 @@
 
         // First, check if a matching « personne » is already in the database
         $query_match = $slim->pdo->prepare('SELECT id_personne
-            FROM T_Personne
+            FROM ' . $config['db_prefix'] . 'T_Personne
             WHERE
                 adresse = :adresse AND
                 code_postal = :cp AND

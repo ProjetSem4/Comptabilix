@@ -18,7 +18,7 @@
         $_POST = clean_post($_POST);
 
         // Then we insert the projet
-        $query_update_t_projet = $slim->pdo->prepare('UPDATE T_Projet
+        $query_update_t_projet = $slim->pdo->prepare('UPDATE ' . $config['db_prefix'] . 'T_Projet
             SET titre_projet = :titre_projet,
                 id_moa = :id_moa,
                 id_societe = :id_societe
