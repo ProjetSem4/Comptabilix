@@ -59,7 +59,7 @@
         ?>
         <tr>
             <th></th>
-            <th colspan="3">Total : <?php echo $nbr_paiement; ?> paiements</th>
+            <th colspan="5">Total : <?php echo $nbr_paiement; ?> paiements</th>
         </tr>
     </table>
 </div>
