@@ -127,8 +127,8 @@
 					$query_given_money = $slim->pdo->query('
 						SELECT SUM(quantite_payee) as prix
 						FROM ' . $config['db_prefix'] . 'T_Devis
-						INNER JOIN TJ_Devis_Societe
-						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = TJ_Devis_Societe.num_devis
+						INNER JOIN T_Paiement
+						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = T_Paiement.num_devis
 						WHERE num_projet=' . $projet['num_projet'] . ' AND est_accepte=1'
 					);
 

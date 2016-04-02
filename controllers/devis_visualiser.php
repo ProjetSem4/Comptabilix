@@ -170,7 +170,7 @@
         <?php
             // Get all the « paiements » corresponding to the project
             $query_select_revenues = $slim->pdo->query('SELECT *
-                                                        FROM TJ_Devis_Societe
+                                                        FROM T_Paiement
                                                         WHERE num_devis = ' . $_GET['id']);
 
             // If there is at least one poste
@@ -180,7 +180,7 @@
 
                 while($ligne_revenue = $query_select_revenues->fetch())
                     echo '<tr>
-                            <td>n/a</td>
+                            <td>' . $ligne_revenue['id_paiement'] . '</td>
                             <td>' . date('d/m/Y', strtotime($ligne_revenue['date_paiement'])) . '</td>
                             <td>' . $ligne_revenue['quantite_payee'] . ' ' . $config['currency'] . '</td>
                             </td>

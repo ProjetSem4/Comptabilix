@@ -23,7 +23,7 @@
             $start_limit = ($page - 1) * $config['paiements_per_page'];
 
             // See how many paiements there is in the database
-            $query_nbr_paiement = $slim->pdo->query('SELECT count(num_devis) as nb_paiements FROM ' . $config['db_prefix'] . 'TJ_Devis_Societe');
+            $query_nbr_paiement = $slim->pdo->query('SELECT count(num_devis) as nb_paiements FROM ' . $config['db_prefix'] . 'T_Paiement');
             $nbr_paiement = $query_nbr_paiement->fetch();
             $nbr_paiement = $nbr_paiement['nb_paiements'];
 
@@ -32,7 +32,7 @@
 
             // Do the query
             $query = $slim->pdo->query('SELECT TDS.*, VS.raison_sociale, TP.titre_projet, TP.num_projet
-                                        FROM ' . $config['db_prefix'] . 'TJ_Devis_Societe as TDS
+                                        FROM ' . $config['db_prefix'] . 'T_Paiement as TDS
                                         INNER JOIN ' . $config['db_prefix'] . 'T_Devis as TD
                                         ON TD.num_devis = TDS.num_devis
                                         INNER JOIN ' . $config['db_prefix'] . 'T_Projet AS TP
@@ -49,7 +49,7 @@
             while($line = $query->fetch())
             {
                 echo '<tr>
-                        <td>n/a</td>
+                        <td>' . $line['id_paiement'] . '</td>
                         <td>' . date('d/m/Y', strtotime($line['date_paiement'])) . '</td>
                         <td>' . $line['quantite_payee'] . ' ' . $config['currency'] . '</td>
                         <td><a href="devis_visualiser?id=' . $line['num_devis'] . '">' . $line['num_devis'] . '</a> <a href="projet_visualiser?id=' . $line['num_projet'] . '">(' . $line['titre_projet'] . ')</a></td>
