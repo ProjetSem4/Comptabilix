@@ -40,7 +40,7 @@
             $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le devis associé est invalide.');
         else
         {
-            $query_insert_devis_societe = $slim->pdo->prepare('INSERT INTO TJ_Devis_Societe (num_devis, id_societe, date_paiement, quantite_payee) VALUES (:nd, :is, :dp, :qp)');
+            $query_insert_devis_societe = $slim->pdo->prepare('INSERT INTO T_Paiement (num_devis, id_societe, date_paiement, quantite_payee) VALUES (:nd, :is, :dp, :qp)');
 
             $query_insert_devis_societe->bindParam(':nd', $_POST['devis']);
             $query_insert_devis_societe->bindParam(':is', $query_check_devis->fetch()['id_societe']);
