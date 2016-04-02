@@ -1,4 +1,5 @@
-<div class="col-lg-12">
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
 		<?php
 		    $templacat->set_variable("page_title", "Retrouver mon mot de passe");
 		
@@ -40,3 +41,4 @@
 		        <button type="submit" class="btn btn-default">Demander un nouveau mot de passe</button>
 		    </form>
 		</div></div>
+<div class="col-lg-3"></div>
