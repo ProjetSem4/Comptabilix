@@ -17,6 +17,7 @@
         'postes_per_page' => 20,
         'devis_per_page' => 20,
         'services_per_page' => 20,
+        'paiements_per_page' => 20,
 
         'site_url' => 'https://example.com/'
     );
