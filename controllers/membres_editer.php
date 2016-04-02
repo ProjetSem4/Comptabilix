@@ -47,7 +47,7 @@
     
     <form class="" role="form" method="post" action="membres_editer_submit">
         <h2>Informations sur le membre</h2>
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-5">
             <label for="prenom">Prénom : </label>
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"> </span></div>
@@ -55,22 +55,14 @@
             </div>
         </div>   
 
-        <div class="form-group col-sm-6">
+        <div class="form-group col-sm-5">
             <label for="nom">Nom : </label>
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"> </span> </div>
                 <input id="nom" name="nom" type="text" class="form-control" placeholder="Nom" value="<?php echo $line['nom']; ?>" required>
             </div>
         </div>
-
-        <div class="form-group col-sm-8">
-            <label for="titre">Titre dans l'association : </label>
-            <div class="input-group">
-                <div class="input-group-addon"><span class="glyphicon glyphicon-king"> </span></div>
-                <input id="titre" name="titre" type="text" class="form-control" placeholder="Titre dans l'association" required>
-            </div>
-        </div>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-2">
             <label for="actif">Est actif ?</label>
             <div class="input-group">
                 <div class="input-group-addon"><span class="glyphicon glyphicon-thumbs-up"> </span></div>

@@ -40,10 +40,6 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="titre-tableau">Titre</td>
-			<td><span class="glyphicon glyphicon-king"></span> TODO : FIX DU MCD
-		</tr>
-		<tr>
 			<td class="titre-tableau">Adresse</td>
 			<td><span class="glyphicon glyphicon-home"></span> <?php echo $line['adresse']; ?></td>
 		</tr>
