@@ -100,4 +100,6 @@
 	$slim->get('/devis_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_visualiser.php'; })->setName('home');
 	$slim->get('/devis_valider', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_valider.php'; })->setName('home');
 	$slim->get('/devis_fin_service', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_fin_service.php'; })->setName('home');
+
+	$slim->get('/paiements_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/paiements_voir.php'; })->setName('home');
 ?>
