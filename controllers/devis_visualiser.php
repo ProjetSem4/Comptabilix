@@ -23,14 +23,14 @@
     $templacat->set_variable("page_title", "Devis n°" . $line['num_devis']);
 
     // Compute the cost of all the postes
-    $query_calc_postes = $slim->pdo->query('SELECT sum(tarif_horaire * nbr_heures) as cout_total FROM TJ_Devis_Salarie_Poste INNER JOIN ' . $config['db_prefix'] . 'T_Poste ON TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste WHERE num_devis = ' . $_GET['id']);
+    $query_calc_postes = $slim->pdo->query('SELECT sum(tarif_horaire * nbr_heures) as cout_total FROM ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste INNER JOIN ' . $config['db_prefix'] . 'T_Poste ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste WHERE num_devis = ' . $_GET['id']);
     $cout_postes = $query_calc_postes->fetch()['cout_total'];
 
     // Set a price if there is no result
     $cout_postes = ($cout_postes == '' ? '0.00' : $cout_postes);
 
     // Compute the cost of all the services
-    $query_calc_services = $slim->pdo->query('SELECT sum(tarif_mensuel) as cout_total FROM TJ_Devis_Service INNER JOIN ' . $config['db_prefix'] . 'T_Service ON TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service WHERE num_devis = ' . $_GET['id']);
+    $query_calc_services = $slim->pdo->query('SELECT sum(tarif_mensuel) as cout_total FROM ' . $config['db_prefix'] . 'TJ_Devis_Service INNER JOIN ' . $config['db_prefix'] . 'T_Service ON ' . $config['db_prefix'] . 'TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service WHERE num_devis = ' . $_GET['id']);
     $cout_services = $query_calc_services->fetch()['cout_total'];
 
     // Set a price if there is no result
@@ -108,11 +108,11 @@
         <?php
             // Get all the postes corresponding to the project
             $query_select_postes = $slim->pdo->query('SELECT *
-                                                        FROM TJ_Devis_Salarie_Poste
+                                                        FROM ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste
                                                         INNER JOIN ' . $config['db_prefix'] . 'T_Poste
-                                                        ON TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
+                                                        ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
                                                         INNER JOIN ' . $config['db_prefix'] . 'V_Salarie
-                                                        ON TJ_Devis_Salarie_Poste.id_personne = ' . $config['db_prefix'] . 'V_Salarie.id_personne
+                                                        ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.id_personne = ' . $config['db_prefix'] . 'V_Salarie.id_personne
                                                         WHERE num_devis = ' . $_GET['id']);
 
             // If there is at least one poste
@@ -140,9 +140,9 @@
     <table class="table">
         <?php        
             $query_select_services = $slim->pdo->query('SELECT *
-                                                        FROM TJ_Devis_Service
+                                                        FROM ' . $config['db_prefix'] . 'TJ_Devis_Service
                                                         INNER JOIN ' . $config['db_prefix'] . 'T_Service
-                                                        ON TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service
+                                                        ON ' . $config['db_prefix'] . 'TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service
                                                         WHERE num_devis = ' . $_GET['id']);
             
             // If there is at least one poste
@@ -170,7 +170,7 @@
         <?php
             // Get all the « paiements » corresponding to the project
             $query_select_revenues = $slim->pdo->query('SELECT *
-                                                        FROM T_Paiement
+                                                        FROM ' . $config['db_prefix'] . 'T_Paiement
                                                         WHERE num_devis = ' . $_GET['id']);
 
             // If there is at least one poste

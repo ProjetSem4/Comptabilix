@@ -34,13 +34,13 @@
         $query_update_t_projet->execute();
 
         // Now remove all the MOEs for the project
-        $slim->pdo->query('DELETE FROM TJ_Membre_Projet WHERE num_projet = ' . $slim->pdo->quote($_POST['num_projet']));
+        $slim->pdo->query('DELETE FROM ' . $config['db_prefix'] . 'TJ_Membre_Projet WHERE num_projet = ' . $slim->pdo->quote($_POST['num_projet']));
 
         // And insert them back
         foreach($_POST['id_moe'] as $single_id_moe)
         {
             // For each id_moe, we insert it
-            $query_insert_tj_mp = $slim->pdo->prepare('INSERT INTO TJ_Membre_Projet (id_membre, num_projet) VALUES (:id_moe, :num_projet)');
+            $query_insert_tj_mp = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'TJ_Membre_Projet (id_membre, num_projet) VALUES (:id_moe, :num_projet)');
             
             $query_insert_tj_mp->bindParam(':id_moe', $single_id_moe);
             $query_insert_tj_mp->bindParam(':num_projet', $_POST['num_projet']);

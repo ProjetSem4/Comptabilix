@@ -51,11 +51,11 @@
 					T_Projet.num_projet,
 					T_Projet.titre_projet, 
 					T_Poste.libelle, 
-					T_Poste.tarif_horaire * TJ_Devis_Salarie_Poste.nbr_heures AS paie
+					T_Poste.tarif_horaire * ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.nbr_heures AS paie
 				FROM ' . $config['db_prefix'] . 'V_Salarie
-				INNER JOIN TJ_Devis_Salarie_Poste ON ' . $config['db_prefix'] . 'V_Salarie.id_personne = TJ_Devis_Salarie_Poste.id_personne
-				INNER JOIN ' . $config['db_prefix'] . 'T_Devis ON TJ_Devis_Salarie_Poste.num_devis = ' . $config['db_prefix'] . 'T_Devis.num_devis
-				INNER JOIN ' . $config['db_prefix'] . 'T_Poste ON TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
+				INNER JOIN ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste ON ' . $config['db_prefix'] . 'V_Salarie.id_personne = ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.id_personne
+				INNER JOIN ' . $config['db_prefix'] . 'T_Devis ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_devis = ' . $config['db_prefix'] . 'T_Devis.num_devis
+				INNER JOIN ' . $config['db_prefix'] . 'T_Poste ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
 				INNER JOIN ' . $config['db_prefix'] . 'T_Projet ON ' . $config['db_prefix'] . 'T_Devis.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
 				WHERE ' . $config['db_prefix'] . 'T_Devis.est_accepte = 1 AND ' . $config['db_prefix'] . 'V_Salarie.id_personne = ' . $_GET['id'] . '
 				ORDER BY ' . $config['db_prefix'] . 'T_Devis.date_acceptation DESC

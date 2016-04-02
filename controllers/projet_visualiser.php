@@ -75,8 +75,8 @@
 			// List all the MOE for the corresponding projet
 			$query_moe = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Membre.id_personne, ' . $config['db_prefix'] . 'V_Membre.nom, ' . $config['db_prefix'] . 'V_Membre.prenom
 				FROM ' . $config['db_prefix'] . 'V_Membre
-				INNER JOIN TJ_Membre_Projet ON ' . $config['db_prefix'] . 'V_Membre.id_personne = TJ_Membre_Projet.id_membre
-				WHERE TJ_Membre_Projet.num_projet = ' . $_GET['id'] .'
+				INNER JOIN ' . $config['db_prefix'] . 'TJ_Membre_Projet ON ' . $config['db_prefix'] . 'V_Membre.id_personne = ' . $config['db_prefix'] . 'TJ_Membre_Projet.id_membre
+				WHERE ' . $config['db_prefix'] . 'TJ_Membre_Projet.num_projet = ' . $_GET['id'] .'
 				ORDER BY prenom, nom ASC');
 	
 			// If none can be found

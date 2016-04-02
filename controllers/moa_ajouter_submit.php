@@ -25,7 +25,7 @@
         $_POST = clean_post($_POST);
         
         // Then we insert the relation
-        $query_insert_tj_sm = $slim->pdo->prepare('INSERT INTO TJ_Societe_MOA (id_societe, id_MOA, titre) 
+        $query_insert_tj_sm = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'TJ_Societe_MOA (id_societe, id_MOA, titre) 
                                                         VALUES (:ids, :idm, :titre)');
 
         // Again, bind the POST data to the prepare() variables

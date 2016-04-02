@@ -32,7 +32,7 @@
             // Do the query
             $query = $slim->pdo->query('SELECT id_personne, nom, prenom, COUNT(num_projet) as nb_projets
                 FROM ' . $config['db_prefix'] . 'V_Membre
-                LEFT JOIN TJ_Membre_Projet ON ' . $config['db_prefix'] . 'V_Membre.id_personne = TJ_Membre_Projet.id_membre
+                LEFT JOIN ' . $config['db_prefix'] . 'TJ_Membre_Projet ON ' . $config['db_prefix'] . 'V_Membre.id_personne = ' . $config['db_prefix'] . 'TJ_Membre_Projet.id_membre
                 GROUP BY id_personne
                 ORDER BY id_personne DESC
                 LIMIT ' . $start_limit . ', ' . $config['membres_per_page']);

@@ -72,7 +72,7 @@
 			// List all the MOAs for the corresponding client
 			$query_moa = $slim->pdo->query('
 				SELECT id_personne, titre, nom, prenom
-				FROM TJ_Societe_MOA
+				FROM ' . $config['db_prefix'] . 'TJ_Societe_MOA
 				INNER JOIN ' . $config['db_prefix'] . 'V_MOA ON id_MOA = id_personne
 				WHERE id_societe = ' . $_GET['id'] . '
 				ORDER BY id_personne DESC'
@@ -127,8 +127,8 @@
 					$query_given_money = $slim->pdo->query('
 						SELECT SUM(quantite_payee) as prix
 						FROM ' . $config['db_prefix'] . 'T_Devis
-						INNER JOIN T_Paiement
-						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = T_Paiement.num_devis
+						INNER JOIN ' . $config['db_prefix'] . 'T_Paiement
+						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = ' . $config['db_prefix'] . 'T_Paiement.num_devis
 						WHERE num_projet=' . $projet['num_projet'] . ' AND est_accepte=1'
 					);
 
@@ -138,10 +138,10 @@
 					$query_due_money = $slim->pdo->query('
 						SELECT SUM(tarif_horaire * nbr_heures) as prix_total
 						FROM ' . $config['db_prefix'] . 'T_Devis
-						INNER JOIN TJ_Devis_Salarie_Poste
-						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = TJ_Devis_Salarie_Poste.num_devis
+						INNER JOIN ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste
+						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_devis
 						INNER JOIN ' . $config['db_prefix'] . 'T_Poste
-						ON TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
+						ON ' . $config['db_prefix'] . 'TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
 						WHERE num_projet=' . $projet['num_projet'] . ' AND est_accepte=1'
 					);
 
@@ -186,14 +186,14 @@
 			$query_services = $slim->pdo->query('
 				SELECT titre_projet, ' . $config['db_prefix'] . 'T_Service.num_service, date_fin, libelle, tarif_mensuel
 				FROM ' . $config['db_prefix'] . 'T_Devis
-				INNER JOIN TJ_Devis_Service
-				ON ' . $config['db_prefix'] . 'T_Devis.num_devis = TJ_Devis_Service.num_devis
+				INNER JOIN ' . $config['db_prefix'] . 'TJ_Devis_Service
+				ON ' . $config['db_prefix'] . 'T_Devis.num_devis = ' . $config['db_prefix'] . 'TJ_Devis_Service.num_devis
 				INNER JOIN ' . $config['db_prefix'] . 'T_Service
-				ON TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service
+				ON ' . $config['db_prefix'] . 'TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service
 				INNER JOIN ' . $config['db_prefix'] . 'T_Projet
 				On ' . $config['db_prefix'] . 'T_Devis.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
 				WHERE ' . $config['db_prefix'] . 'T_Devis.num_projet=' . $_GET['id'] . ' AND est_accepte=1
-				ORDER BY TJ_Devis_Service.date_debut DESC
+				ORDER BY ' . $config['db_prefix'] . 'TJ_Devis_Service.date_debut DESC
 			');
 
 			// If none is found
