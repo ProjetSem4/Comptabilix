@@ -14,6 +14,9 @@
     elseif($_POST['date_fin'] != '' && strtotime($_POST['date_fin']) === false)
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'La date de fin est invalide.');
 
+    elseif($_POST['date_fin'] != '' && strtotime($_POST['date_fin']) < strtotime($_POST['date_debut']))
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'La date de fin ne peut être inférieure à la date de début.');
+
     // If everything's good
     else
     {
