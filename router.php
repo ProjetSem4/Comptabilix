@@ -102,4 +102,7 @@
 	$slim->get('/devis_fin_service', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/devis_fin_service.php'; })->setName('home');
 
 	$slim->get('/paiements_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/paiements_voir.php'; })->setName('home');
+	$slim->get('/paiements_ajouter', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/paiements_ajouter.php'; })->setName('home');
+
+	$slim->post('/paiements_ajouter_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/paiements_ajouter_submit.php'; })->setName('home');
 ?>
