@@ -14,6 +14,8 @@
         <div class="panel-heading"><h3 class="panel-title miseenpage3">Gestion associative</h3></div>
         <ul class="nav nav-pills nav-stacked menu">
             <li role="presentation"><a href="membres_voir">Membres</a></li>
+            <li role="presentation"><a href="postes_voir">Postes</a></li>
+            <li role="presentation"><a href="services_voir">Services</a></li>
         </ul>   
     </div>
 
