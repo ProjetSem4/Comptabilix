@@ -45,5 +45,4 @@
                 {{%PAGE_SIDEBAR%}}
 
                 <!-- Content container-->
-                <div class="col-lg-9">
-                    {{%PAGE_CONTENT%}}
+                {{%PAGE_CONTENT%}}
