@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html>
     <head>
         <title>Installation - Fortitudo</title>
@@ -34,6 +37,30 @@
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
+                    <?php
+                        // Show message(s), if needed
+                        if(isset($_SESSION['fortitudo_messages']) && is_array($_SESSION['fortitudo_messages']))
+                        {
+                            // For each message
+                            foreach($_SESSION['fortitudo_messages'] as $message)
+                            {
+                                // Use a different layout, determined by the type of the message
+                                switch($message['type'])
+                                {
+                                    case 'error' : 
+                                        echo '<div class="alert alert-danger" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' . $message['content'] . '</div>';
+                                        break;
+                                
+                                    case 'success' : 
+                                        echo '<div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' . $message['content'] . '</div>';
+                                        break;
+                                }
+                            }
+                    
+                            // Clean the message queue
+                            $_SESSION['fortitudo_messages'] = array();
+                        }
+                    ?>
                     <form method="post" action="install.php">
                         <div class="panel panel-default">
                             <div class="panel-heading"><h3 class="panel-title miseenpage3">Accès à la base de données MySQL</h3></div>
@@ -47,12 +74,12 @@
                                     <input class="form-control" name="db_user" required type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="db_password" class="control-label">Mot de passe : </label>
-                                    <input class="form-control" name="db_password" type="password">
+                                    <label for="db_pass" class="control-label">Mot de passe : </label>
+                                    <input class="form-control" name="db_pass" type="password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="db_bdd" class="control-label">Base de données : </label>
-                                    <input class="form-control" name="db_bdd" required type="text">
+                                    <label for="db_name" class="control-label">Base de données : </label>
+                                    <input class="form-control" name="db_name" required type="text">
                                 </div>
                                 <div class="form-group">
                                     <label for="db_prefix" class="control-label">Préfixe des tables : </label>
