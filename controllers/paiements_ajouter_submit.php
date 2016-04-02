@@ -27,8 +27,8 @@
 
         // First, check if the devis exists and get the id_societe from the num_devis
         $query_check_devis = $slim->pdo->prepare('SELECT TP.id_societe
-                                                    FROM T_Devis as TD
-                                                    INNER JOIN T_Projet AS TP
+                                                    FROM ' . $config['db_prefix'] . 'T_Devis as TD
+                                                    INNER JOIN ' . $config['db_prefix'] . 'T_Projet AS TP
                                                     ON TD.num_projet = TP.num_projet
                                                     WHERE TD.num_devis = :nd
                                                     AND TD.est_accepte = 1');
