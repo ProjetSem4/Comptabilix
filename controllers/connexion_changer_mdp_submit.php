@@ -18,11 +18,11 @@
 
         // Check if the user exists, if the password is right and if he has the right to connect
         $query = $slim->pdo->query('SELECT num_identifiant, mail
-            FROM T_Identifiant
-            INNER JOIN V_Identifiant
-            ON T_Identifiant.id_membre = V_Identifiant.id_personne
+            FROM ' . $config['db_prefix'] . 'T_Identifiant
+            INNER JOIN ' . $config['db_prefix'] . 'V_Identifiant
+            ON ' . $config['db_prefix'] . 'T_Identifiant.id_membre = ' . $config['db_prefix'] . 'V_Identifiant.id_personne
             WHERE
-                T_Identifiant.cle_recuperation = ' . $slim->pdo->quote($_POST['cle']));
+                ' . $config['db_prefix'] . 'T_Identifiant.cle_recuperation = ' . $slim->pdo->quote($_POST['cle']));
 
          // If nothing was found
         if($query->rowCount() == 0)
@@ -42,7 +42,7 @@
             // And update the database with the new password
             $num_identifiant = $slim->pdo->quote($user['num_identifiant']);
 
-            $slim->pdo->query('UPDATE T_Identifiant SET mot_de_passe = ' . $password2 . ', cle_recuperation = NULL WHERE num_identifiant = ' . $num_identifiant);
+            $slim->pdo->query('UPDATE ' . $config['db_prefix'] . 'T_Identifiant SET mot_de_passe = ' . $password2 . ', cle_recuperation = NULL WHERE num_identifiant = ' . $num_identifiant);
 
             // And finally go back to the right page
             $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'Le mot de passe a été changé avec succès.');

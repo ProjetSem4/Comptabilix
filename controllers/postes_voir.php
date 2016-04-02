@@ -22,7 +22,7 @@
             $start_limit = ($page - 1) * $config['postes_per_page'];
 
             // See how many postes there is in the database
-            $query_nbr_poste = $slim->pdo->query('SELECT count(num_poste) as nb_postes FROM T_Poste');
+            $query_nbr_poste = $slim->pdo->query('SELECT count(num_poste) as nb_postes FROM ' . $config['db_prefix'] . 'T_Poste');
             $nbr_poste = $query_nbr_poste->fetch();
             $nbr_poste = $nbr_poste['nb_postes'];
 
@@ -31,7 +31,7 @@
 
             // Do the query
             $query = $slim->pdo->query('SELECT num_poste, libelle, tarif_horaire
-                FROM T_Poste
+                FROM ' . $config['db_prefix'] . 'T_Poste
                 ORDER BY num_poste DESC
                 LIMIT ' . $start_limit . ', ' . $config['postes_per_page']);
 

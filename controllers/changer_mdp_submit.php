@@ -22,7 +22,7 @@
 
         // Check if the user exists, if the password is right and if he has the right to connect
         $query = $slim->pdo->query('SELECT num_identifiant
-            FROM T_Identifiant
+            FROM ' . $config['db_prefix'] . 'T_Identifiant
             WHERE
                 id_membre = ' . $slim->pdo->quote($_SESSION['connection_state']['id']) . ' AND 
                 mot_de_passe = ' . $password);
@@ -42,7 +42,7 @@
             // And update the database with the new password
             $num_identifiant = $slim->pdo->quote($query->fetch()['num_identifiant']);
 
-            $slim->pdo->query('UPDATE T_Identifiant SET mot_de_passe = ' . $password2 . ' WHERE num_identifiant = ' . $num_identifiant);
+            $slim->pdo->query('UPDATE ' . $config['db_prefix'] . 'T_Identifiant SET mot_de_passe = ' . $password2 . ' WHERE num_identifiant = ' . $num_identifiant);
 
             // And finally go back to the right page
             $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'Le mot de passe a été changé avec succès.');

@@ -22,7 +22,7 @@
             $start_limit = ($page - 1) * $config['projets_per_page'];
 
             // See how many projets there is in the database
-            $query_nbr_projet = $slim->pdo->query('SELECT count(num_projet) as nb_projets FROM T_Projet');
+            $query_nbr_projet = $slim->pdo->query('SELECT count(num_projet) as nb_projets FROM ' . $config['db_prefix'] . 'T_Projet');
             $nbr_projet = $query_nbr_projet->fetch();
             $nbr_projet = $nbr_projet['nb_projets'];
 
@@ -30,9 +30,9 @@
             $number_of_pages = ceil($nbr_projet / $config['projets_per_page']);
 
             // Do the query
-            $query = $slim->pdo->query('SELECT T_Projet.num_projet, T_Projet.titre_projet, V_Societe.id_personne, V_Societe.raison_sociale
-                FROM T_Projet
-                INNER JOIN V_Societe ON T_Projet.id_societe = V_Societe.id_personne
+            $query = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'T_Projet.num_projet, ' . $config['db_prefix'] . 'T_Projet.titre_projet, ' . $config['db_prefix'] . 'V_Societe.id_personne, ' . $config['db_prefix'] . 'V_Societe.raison_sociale
+                FROM ' . $config['db_prefix'] . 'T_Projet
+                INNER JOIN ' . $config['db_prefix'] . 'V_Societe ON ' . $config['db_prefix'] . 'T_Projet.id_societe = ' . $config['db_prefix'] . 'V_Societe.id_personne
                 ORDER BY num_projet DESC
                 LIMIT ' . $start_limit . ', ' . $config['projets_per_page']);
 

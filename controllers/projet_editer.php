@@ -6,7 +6,7 @@
         $_GET['id'] = $slim->pdo->quote($_GET['id']);
 
     // Query the database
-    $query = $slim->pdo->query('SELECT * FROM T_Projet WHERE num_projet = ' . $_GET['id']);
+    $query = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'T_Projet WHERE num_projet = ' . $_GET['id']);
 
     // Check if the id is valid
     if($query->rowCount() < 1)
@@ -62,7 +62,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
                 <select class="form-control" id="id_client" name="id_client" required>
                     <?php
-                        $query_list_societes = $slim->pdo->query('SELECT id_personne, raison_sociale FROM V_Societe ORDER BY raison_sociale ASC');
+                        $query_list_societes = $slim->pdo->query('SELECT id_personne, raison_sociale FROM ' . $config['db_prefix'] . 'V_Societe ORDER BY raison_sociale ASC');
                         
                         while($line_societe = $query_list_societes->fetch())
                         {
@@ -84,7 +84,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select class="form-control" id="id_moa" name="id_moa" required>
                     <?php
-                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM V_MOA ORDER BY prenom, nom ASC');
+                        $query_list_moa = $slim->pdo->query('SELECT id_personne, nom, prenom FROM ' . $config['db_prefix'] . 'V_MOA ORDER BY prenom, nom ASC');
                         while($line_moa = $query_list_moa->fetch())
                         {
                             echo '<option value="' . $line_moa['id_personne'] . '"';
@@ -105,7 +105,7 @@
                 <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                 <select class="form-control" id="id_moe" name="id_moe[]" required multiple>
                     <?php
-                        $query_list_moe = $slim->pdo->query('SELECT id_personne, nom, prenom FROM V_Membre ORDER BY prenom, nom ASC');
+                        $query_list_moe = $slim->pdo->query('SELECT id_personne, nom, prenom FROM ' . $config['db_prefix'] . 'V_Membre ORDER BY prenom, nom ASC');
                         
                         while($line_moe = $query_list_moe->fetch())
                         {

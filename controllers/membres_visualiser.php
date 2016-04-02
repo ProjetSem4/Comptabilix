@@ -6,9 +6,9 @@
 		$_GET['id'] = $slim->pdo->quote($_GET['id']);
 
 	// Query the database
-	$query = $slim->pdo->query('SELECT V_Membre.*, V_Identifiant.id_personne as compte_actif FROM V_Membre
-								LEFT JOIN V_Identifiant ON V_Membre.id_personne = V_Identifiant.id_personne
-								WHERE V_Membre.id_personne = ' . $_GET['id']);
+	$query = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'V_Membre.*, ' . $config['db_prefix'] . 'V_Identifiant.id_personne as compte_actif FROM ' . $config['db_prefix'] . 'V_Membre
+								LEFT JOIN ' . $config['db_prefix'] . 'V_Identifiant ON ' . $config['db_prefix'] . 'V_Membre.id_personne = ' . $config['db_prefix'] . 'V_Identifiant.id_personne
+								WHERE ' . $config['db_prefix'] . 'V_Membre.id_personne = ' . $_GET['id']);
 
 	// Check if the id is valid
 	if($query->rowCount() < 1)
@@ -78,9 +78,9 @@
 	<table class="table">
 		<?php
 			// List all the projets for the corresponding member
-			$query_projets = $slim->pdo->query('SELECT T_Projet.num_projet, titre_projet
+			$query_projets = $slim->pdo->query('SELECT ' . $config['db_prefix'] . 'T_Projet.num_projet, titre_projet
 				FROM TJ_Membre_Projet
-				INNER JOIN T_Projet ON TJ_Membre_Projet.num_projet = T_Projet.num_projet
+				INNER JOIN ' . $config['db_prefix'] . 'T_Projet ON TJ_Membre_Projet.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
 				WHERE id_membre = ' . $_GET['id'] . '
 				ORDER BY num_projet DESC'
 			) or die(var_dump($slim->pdo->errorInfo()));

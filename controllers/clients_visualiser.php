@@ -6,7 +6,7 @@
 		$_GET['id'] = $slim->pdo->quote($_GET['id']);
 
 	// Query the database
-	$query = $slim->pdo->query('SELECT * FROM V_Societe WHERE id_personne = ' . $_GET['id']);
+	$query = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'V_Societe WHERE id_personne = ' . $_GET['id']);
 
 	// Check if the id is valid
 	if($query->rowCount() < 1)
@@ -73,7 +73,7 @@
 			$query_moa = $slim->pdo->query('
 				SELECT id_personne, titre, nom, prenom
 				FROM TJ_Societe_MOA
-				INNER JOIN V_MOA ON id_MOA = id_personne
+				INNER JOIN ' . $config['db_prefix'] . 'V_MOA ON id_MOA = id_personne
 				WHERE id_societe = ' . $_GET['id'] . '
 				ORDER BY id_personne DESC'
 			);
@@ -107,7 +107,7 @@
 			// List all the projets created for the corresponding client
 			$query_projects = $slim->pdo->query('
 				SELECT num_projet, titre_projet
-				FROM T_Projet
+				FROM ' . $config['db_prefix'] . 'T_Projet
 				WHERE id_societe = ' . $_GET['id'] . '
 				ORDER BY date_creation DESC
 			');
@@ -126,9 +126,9 @@
 					// See how much money has been given by the client
 					$query_given_money = $slim->pdo->query('
 						SELECT SUM(quantite_payee) as prix
-						FROM T_Devis
+						FROM ' . $config['db_prefix'] . 'T_Devis
 						INNER JOIN TJ_Devis_Societe
-						ON T_Devis.num_devis = TJ_Devis_Societe.num_devis
+						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = TJ_Devis_Societe.num_devis
 						WHERE num_projet=' . $projet['num_projet'] . ' AND est_accepte=1'
 					);
 
@@ -137,11 +137,11 @@
 					// See how much money is due by the client
 					$query_due_money = $slim->pdo->query('
 						SELECT SUM(tarif_horaire * nbr_heures) as prix_total
-						FROM T_Devis
+						FROM ' . $config['db_prefix'] . 'T_Devis
 						INNER JOIN TJ_Devis_Salarie_Poste
-						ON T_Devis.num_devis = TJ_Devis_Salarie_Poste.num_devis
-						INNER JOIN T_Poste
-						ON TJ_Devis_Salarie_Poste.num_poste = T_Poste.num_poste
+						ON ' . $config['db_prefix'] . 'T_Devis.num_devis = TJ_Devis_Salarie_Poste.num_devis
+						INNER JOIN ' . $config['db_prefix'] . 'T_Poste
+						ON TJ_Devis_Salarie_Poste.num_poste = ' . $config['db_prefix'] . 'T_Poste.num_poste
 						WHERE num_projet=' . $projet['num_projet'] . ' AND est_accepte=1'
 					);
 
@@ -184,15 +184,15 @@
 		<?php
 			// List all the projets created for the corresponding client
 			$query_services = $slim->pdo->query('
-				SELECT titre_projet, T_Service.num_service, date_fin, libelle, tarif_mensuel
-				FROM T_Devis
+				SELECT titre_projet, ' . $config['db_prefix'] . 'T_Service.num_service, date_fin, libelle, tarif_mensuel
+				FROM ' . $config['db_prefix'] . 'T_Devis
 				INNER JOIN TJ_Devis_Service
-				ON T_Devis.num_devis = TJ_Devis_Service.num_devis
-				INNER JOIN T_Service
-				ON TJ_Devis_Service.num_service = T_Service.num_service
-				INNER JOIN T_Projet
-				On T_Devis.num_projet = T_Projet.num_projet
-				WHERE T_Devis.num_projet=' . $_GET['id'] . ' AND est_accepte=1
+				ON ' . $config['db_prefix'] . 'T_Devis.num_devis = TJ_Devis_Service.num_devis
+				INNER JOIN ' . $config['db_prefix'] . 'T_Service
+				ON TJ_Devis_Service.num_service = ' . $config['db_prefix'] . 'T_Service.num_service
+				INNER JOIN ' . $config['db_prefix'] . 'T_Projet
+				On ' . $config['db_prefix'] . 'T_Devis.num_projet = ' . $config['db_prefix'] . 'T_Projet.num_projet
+				WHERE ' . $config['db_prefix'] . 'T_Devis.num_projet=' . $_GET['id'] . ' AND est_accepte=1
 				ORDER BY TJ_Devis_Service.date_debut DESC
 			');
 

@@ -26,7 +26,7 @@
         $_POST = clean_post($_POST);
 
         // Then we insert the service
-        $query_insert_t_service = $slim->pdo->prepare('INSERT INTO T_Service (libelle, tarif_mensuel) VALUES (:lib, :th)');
+        $query_insert_t_service = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Service (libelle, tarif_mensuel) VALUES (:lib, :th)');
 
         // Again, bind the POST data to the prepare() variables
         $query_insert_t_service->bindParam(':lib', $_POST['libelle']);

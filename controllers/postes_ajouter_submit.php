@@ -26,7 +26,7 @@
         $_POST = clean_post($_POST);
 
         // Then we insert the poste
-        $query_insert_t_poste = $slim->pdo->prepare('INSERT INTO T_Poste (libelle, tarif_horaire) VALUES (:lib, :th)');
+        $query_insert_t_poste = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Poste (libelle, tarif_horaire) VALUES (:lib, :th)');
 
         // Again, bind the POST data to the prepare() variables
         $query_insert_t_poste->bindParam(':lib', $_POST['libelle']);

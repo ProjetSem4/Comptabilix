@@ -32,7 +32,7 @@
         if($t_personne_id === false)
         {
             // Then we insert the user
-            $query_insert_t_personne = $slim->pdo->prepare('INSERT INTO T_Personne (adresse, code_postal, ville, telephone, mail) 
+            $query_insert_t_personne = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Personne (adresse, code_postal, ville, telephone, mail) 
                                                             VALUES (:adresse, :cp, :ville, :tel, :email)');
 
             // Again, bind the POST data to the prepare() variables
@@ -55,12 +55,12 @@
         else
         {
             // Then insert the nom and the prénom into the database (if no exists)
-            $query_select_personne_physique = $slim->pdo->query('SELECT id_personne FROM T_Personne_Physique WHERE id_personne = ' . $slim->pdo->quote($t_personne_id));
+            $query_select_personne_physique = $slim->pdo->query('SELECT id_personne FROM ' . $config['db_prefix'] . 'T_Personne_Physique WHERE id_personne = ' . $slim->pdo->quote($t_personne_id));
 
             // If none is found
             if($query_select_personne_physique->rowCount() < 1)
             {
-                $query_insert_personne_physique = $slim->pdo->prepare('INSERT INTO T_Personne_Physique VALUES (:id, :nom, :prenom)');
+                $query_insert_personne_physique = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Personne_Physique VALUES (:id, :nom, :prenom)');
                 
                 $query_insert_personne_physique->bindParam(':id', $t_personne_id);
                 $query_insert_personne_physique->bindParam(':nom', $_POST['nom']);
@@ -69,8 +69,8 @@
                 $query_insert_personne_physique->execute();
             }
 
-            // And then insert the id_personne into T_Salarie
-            $query_insert_salarie = $slim->pdo->prepare('INSERT INTO T_Salarie VALUES (:id)');
+            // And then insert the id_personne into ' . $config['db_prefix'] . 'T_Salarie
+            $query_insert_salarie = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Salarie VALUES (:id)');
             $query_insert_salarie->bindParam(':id', $t_personne_id);
             $query_insert_salarie->execute();
 
@@ -86,7 +86,7 @@
 
         // First, check if a matching « personne » is already in the database
         $query_match = $slim->pdo->prepare('SELECT id_personne
-            FROM T_Personne
+            FROM ' . $config['db_prefix'] . 'T_Personne
             WHERE
                 adresse = :adresse AND
                 code_postal = :cp AND

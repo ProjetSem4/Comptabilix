@@ -6,7 +6,7 @@
         $_GET['id'] = $slim->pdo->quote($_GET['id']);
 
     // Query the database
-    $query = $slim->pdo->query('SELECT * FROM V_Salarie WHERE id_personne = ' . $_GET['id']);
+    $query = $slim->pdo->query('SELECT * FROM ' . $config['db_prefix'] . 'V_Salarie WHERE id_personne = ' . $_GET['id']);
 
     // Check if the id is valid
     if($query->rowCount() < 1)

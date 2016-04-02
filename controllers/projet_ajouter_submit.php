@@ -18,7 +18,7 @@
         $_POST = clean_post($_POST);
 
         // Then we insert the projet
-        $query_insert_t_projet = $slim->pdo->prepare('INSERT INTO T_Projet (titre_projet, date_creation, id_moa, id_societe) 
+        $query_insert_t_projet = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Projet (titre_projet, date_creation, id_moa, id_societe) 
                                                         VALUES (:titre_projet, :date_creation, :id_moa, :id_societe)');
 
         // Again, bind the POST data to the prepare() variables
@@ -32,7 +32,7 @@
 
         // Now get new num_projet of the newly inserted project
         $query_select_t_projet = $slim->pdo->prepare('SELECT num_projet
-                                                        FROM T_Projet
+                                                        FROM ' . $config['db_prefix'] . 'T_Projet
                                                         WHERE 
                                                             titre_projet = :titre_projet AND
                                                             date_creation = :date_creation AND
