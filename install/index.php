@@ -145,7 +145,7 @@
                                 </div>
                            
                                 <div class="form-group">
-                                    <label for="motdepasse">Adresse e-mail : </label>
+                                    <label for="motdepasse">Mot de passe : </label>
                                     <input type="password" name="motdepasse" class="form-control" id="motdepasse" placeholder="Mot de passe">
                                 </div>
                             </div>
