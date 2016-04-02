@@ -1,14 +1,14 @@
 <?php
     $config = array(
-        'db_host'     => 'localhost',
-        'db_user'     => 'root',
-        'db_pass'     => '',
-        'db_name'     => 'fortitudo',
-        'db_prefix'   => 'fortitudo',
+        'db_host'     => '[DB_HOST]',
+        'db_user'     => '[DB_USER]',
+        'db_pass'     => '[DB_PASS]',
+        'db_name'     => '[DB_NAME]',
+        'db_prefix'   => '[DB_PREFIX]',
 
-        'association' => 'My association',
+        'association' => '[ASSOCIATION]',
 
-        'currency' => '€',
+        'currency' => '[CURRENCY]',
         
         'clients_per_page' => 20,
         'salaries_per_page' => 20,
@@ -19,6 +19,6 @@
         'services_per_page' => 20,
         'paiements_per_page' => 20,
 
-        'site_url' => 'https://example.com/'
+        'site_url' => '[URL]'
     );
 ?>

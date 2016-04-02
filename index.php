@@ -24,11 +24,14 @@
 
     $templacat->load_template('footer');
 
-    // Then load the configuration file (if exists)
-    if(is_file('config.php'))
+    // Then load the configuration file (if exists and if the install folder has been removed)
+    if(is_file('config.php') && !is_dir('install'))
         include 'config.php';
     else // Or redirect to the installation wizard
-        header('Location : install/');
+    {    
+        header('Location: install/index.php');
+        exit;
+    }
 
     // Set the name of the association
     $templacat->set_variable('ASSOCIATION_NAME', $config['association']);
