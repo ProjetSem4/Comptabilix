@@ -29,7 +29,7 @@
         include 'config.php';
     else // Or redirect to the installation wizard
     {    
-        header('Location : install/');
+        header('Location: install/index.php');
         exit;
     }
 
