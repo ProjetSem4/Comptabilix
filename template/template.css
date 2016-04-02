@@ -117,3 +117,14 @@ h3
 {
     margin: 40px 0 20px 0;
 }
+
+.dropdown-toggle
+{
+    color: #fff;
+}
+
+.nav > li > a:focus, .nav > li > a:hover, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover, .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover
+{
+    background: #2daa9e;
+    color: #fff;
+}
