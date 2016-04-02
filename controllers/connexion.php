@@ -1,4 +1,5 @@
-<div class="col-lg-12">
+<div class="col-lg-3"></div>
+<div class="col-lg-6">
 		<?php
 		    $templacat->set_variable("page_title", "Connexion à Fortitudo");
 		
@@ -47,4 +48,6 @@
 		
 		        <button type="submit" class="btn btn-default">Connexion</button>
 		    </form>
-		</div></div>
+		</div>
+	</div>
+<div class="col-lg-3"></div>
