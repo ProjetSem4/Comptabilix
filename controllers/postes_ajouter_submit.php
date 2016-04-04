@@ -2,9 +2,12 @@
     // Replace commas with points (french -> english notation)
     if(isset($_POST['tarif']))
         $_POST['tarif'] = str_replace(',', '.', $_POST['tarif']);
+
+    if(isset($_POST['part']))
+        $_POST['part'] = str_replace(',', '.', $_POST['part']);
     
     // Check if all the required data are passed (correctly)
-    if(!isset($_POST['libelle'], $_POST['tarif']))
+    if(!isset($_POST['libelle'], $_POST['tarif'], $_POST['part']))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais usage du formulaire.');
 
     // Then check if all the required data aren't empty
@@ -15,9 +18,21 @@
     elseif(!is_numeric($_POST['tarif']))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le tarif horaire doit être un nombre');
     
-    // And finally, check if the tarif is > 0
+    // Check if the tarif is > 0
     elseif($_POST['tarif'] <= 0)
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le tarif horaire est trop bas.');
+
+    // Then check if the part_salariale is a number
+    elseif(!is_numeric($_POST['part']))
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'La part salariale horaire doit être un nombre');
+    
+    // Check if the part_salariale is > 0
+    elseif($_POST['part'] <= 0)
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'La part salariale est trop bas.');
+
+    // And check if the part_salariale is < tarif
+    elseif($_POST['part'] > $_POST['tarif'])
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'La part salariale est supérieure au tarif horaire.');
 
     // If everything's good
     else
@@ -26,11 +41,12 @@
         $_POST = clean_post($_POST);
 
         // Then we insert the poste
-        $query_insert_t_poste = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Poste (libelle, tarif_horaire) VALUES (:lib, :th)');
+        $query_insert_t_poste = $slim->pdo->prepare('INSERT INTO ' . $config['db_prefix'] . 'T_Poste (libelle, tarif_horaire, part_salariale) VALUES (:lib, :th, :ps)');
 
         // Again, bind the POST data to the prepare() variables
         $query_insert_t_poste->bindParam(':lib', $_POST['libelle']);
         $query_insert_t_poste->bindParam(':th', $_POST['tarif']);
+        $query_insert_t_poste->bindParam(':ps', $_POST['part']);
 
         // Then execute the query
         $query_insert_t_poste->execute();

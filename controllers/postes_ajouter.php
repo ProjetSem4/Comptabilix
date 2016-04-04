@@ -46,6 +46,14 @@
 		            </div>
 		        </div>
 		
+		        <div class="form-group col-sm-12">
+		            <label for="part">Part salariale (en <?php echo $config['currency']; ?>) :</label>
+		            <div class="input-group">
+		                <div class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></div>
+		                <input id="part" name="part" type="text" class="form-control" placeholder="En <?php echo $config['currency']; ?>" required>
+		            </div>
+		        </div>
+		
 		        <button type="reset" class="btn btn-danger">Remettre à zéro le formulaire</button>
 		        <button type="submit" class="btn btn-success">Ajouter le poste</button>
 		    </form>
