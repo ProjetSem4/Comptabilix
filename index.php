@@ -51,7 +51,7 @@
 
     // Check if the user is connected, or if he tries to access a login page
     if((!isset($_SESSION['connection_state']['connected']) || $_SESSION['connection_state']['connected'] !== true) && substr($_SERVER['REQUEST_URI'], 0, 10) !== '/connexion')
-        header('Location: /connexion'); // Then redirect to the login page
+        header('Location: connexion'); // Then redirect to the login page
     
     // If the user has a name, then we set it
     if(isset($_SESSION['connection_state']['name']))
