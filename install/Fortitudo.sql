@@ -107,6 +107,7 @@ CREATE TABLE {{DB_PREFIX}}T_Poste
     num_poste SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL,
     libelle VARCHAR(50) NOT NULL,
     tarif_horaire DECIMAL(7,2) NOT NULL CHECK (tarif_horaire > 0.0),
+    part_salariale DECIMAL(7,2) NOT NULL CHECK (part_salariale > 0.0),
     
     PRIMARY KEY (num_poste)
 ) ENGINE=INNODB;
