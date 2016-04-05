@@ -163,6 +163,10 @@
                 // And write it to the config file
                 file_put_contents('../config.php', $config_file);
 
+                // Create the two folders (uploads/ and models/)
+                mkdir('../uploads/');
+                mkdir('../models/');
+
                 // And finally delete the install/ folder
                 rmdir_recursive('../install/');
 
