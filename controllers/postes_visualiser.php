@@ -32,5 +32,9 @@
 		            <td class="titre-tableau">Tarif horaire</td>
 		            <td><span class="glyphicon glyphicon-euro"></span> <?php echo $line['tarif_horaire'] . ' ' . $config['currency']; ?></td>
 		        </tr>
+		        <tr>
+		            <td class="titre-tableau">Part salariale</td>
+		            <td><span class="glyphicon glyphicon-euro"></span> <?php echo $line['part_salariale'] . ' ' . $config['currency']; ?></td>
+		        </tr>
 		    </table>
 		</div></div>

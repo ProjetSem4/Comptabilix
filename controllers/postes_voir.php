@@ -10,7 +10,8 @@
 		        <tr>
 		            <th style="width: 30px">#</th>
 		            <th>Nom du poste</th>
-		            <th style="width: 200px">Tarif horaire</th>
+		            <th>Tarif horaire</th>
+		            <th>Part salariale</th>
 		            <th style="width: 100px">Actions</th>
 		        </tr>
 		        <?php
@@ -31,7 +32,7 @@
 		            $number_of_pages = ceil($nbr_poste / $config['postes_per_page']);
 		
 		            // Do the query
-		            $query = $slim->pdo->query('SELECT num_poste, libelle, tarif_horaire
+		            $query = $slim->pdo->query('SELECT num_poste, libelle, tarif_horaire, part_salariale
 		                FROM ' . $config['db_prefix'] . 'T_Poste
 		                ORDER BY num_poste DESC
 		                LIMIT ' . $start_limit . ', ' . $config['postes_per_page']);
@@ -46,6 +47,7 @@
 		                        <td>' . $line['num_poste'] . '</td>
 		                        <td>' . $line['libelle'] . '</td>
 		                        <td>' . $line['tarif_horaire'] . ' ' . $config['currency'] . '</td>
+		                        <td>' . $line['part_salariale'] . ' ' . $config['currency'] . '</td>
 		                        <td><a class="btn btn-info" title="Visualiser le poste" href="postes_visualiser?id=' . $line['num_poste'] . '"><span class="glyphicon glyphicon-user"></span></a>
 		                        <a class="btn btn-warning" title="Éditer le poste" href="postes_editer?id=' . $line['num_poste'] . '"><span class="glyphicon glyphicon-pencil"></span></a></td>
 		                    </tr>';
