@@ -26,7 +26,7 @@
             if($_FILES['fichier']['error'][$i] === 0)
             {
                 // Alors on le déplace dans le bon dossier
-                rename($_FILES['fichier']['tmp_name'][$i], 'uploads/' . $_POST['annee'] . '/' . basename($_FILES['fichier']['name'][$i]));
+                rename($_FILES['fichier']['tmp_name'][$i], 'uploads/' . $_POST['annee'] . '/' . basename($_FILES['fichier']['name'][$i]) . '.' . time());
             }
         }
 

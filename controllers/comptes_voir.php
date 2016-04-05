@@ -78,10 +78,19 @@
                         // Si c'est un fichier et qu'il n'est pas caché (= commencer par un point)
                         if(!is_dir($contenu) && substr($contenu, 0, 1) != '.')
                         {
+                            // On prend le timestamp d'upload du fichier
+                            $timestamp_fichier = end(explode('.', $contenu));
+
+                            // On prend le nom du fichier, sans son timestamp final
+                            $nom_fichier = str_replace('.' . $timestamp_fichier, '', $contenu);
+
+                            // Puis on converti le timestamp string en long
+                            $timestamp_fichier = $timestamp_fichier + 0;
+
                             // Alors on l'affiche
                             $tableau .= '<tr>
-                                <td>' . htmlspecialchars($contenu) . '</td>
-                                <td>' . date('d/m/Y à H:i', filemtime('uploads/' . $annee['annee'] . '/' . $contenu)) . '</td>
+                                <td>' . htmlspecialchars($nom_fichier) . '</td>
+                                <td>' . date('d/m/Y à H:i', $timestamp_fichier) . '</td>
                                 <td>
 
                                     <a class="btn btn-info" title="Télécharger" href="comptes_telecharger?a=' . $annee['annee'] . '&fichier=' . urlencode($contenu) . '"><span class="glyphicon glyphicon-cloud-download"></span></a>

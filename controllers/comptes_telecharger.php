@@ -17,10 +17,16 @@
         // Chemin du fichier
         $fichier = 'uploads/' . $_GET['a'] . '/' . basename($_GET['fichier']);
 
+        // On prend le timestamp d'upload du fichier
+        $timestamp_fichier = end(explode('.', basename($_GET['fichier'])));
+
+        // On prend le nom du fichier, sans son timestamp final
+        $nom_fichier = str_replace('.' . $timestamp_fichier, '', basename($_GET['fichier']));
+
         // On met les headers de téléchargement
         header('Content-Type: application/octet-stream');
         header('Content-Transfer-Encoding: Binary');
-        header('Content-disposition: attachment; filename="' . basename($_GET['fichier']) . '"'); 
+        header('Content-disposition: attachment; filename="' . $nom_fichier . '"'); 
         header('Content-Length: ' . filesize($fichier));
   
         // On output le contenu du fichier
