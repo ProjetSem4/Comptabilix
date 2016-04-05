@@ -371,7 +371,7 @@
                 if(!is_dir('uploads/' . $annee))
                     mkdir('uploads/' . $annee);
 
-                $xlsx_export->save('uploads/' . $annee . '/Compte_de_resultats_' . $annee . '.xlsx');
+                $xlsx_export->save('uploads/' . $annee . '/Compte_de_resultats_' . $annee . '.xlsx.' . time());
 
                 $_SESSION['fortitudo_messages'][] = array('type' => 'success', 'content' => 'Compte de résultats pour l\'année ' . $annee . ' généré avec succès. N\'oubliez pas de presser CTRL + SHIFT + F9 pour lancer les calculs.');
         }
