@@ -69,8 +69,8 @@
 
                     // On parcours son contenu
                     while($contenu = readdir($repertoire)){
-                        // Si c'est un fichier
-                        if(!is_dir($contenu))
+                        // Si c'est un fichier et qu'il n'est pas caché (= commencer par un point)
+                        if(!is_dir($contenu) && substr($contenu, 0, 1) != '.')
                         {
                             // Alors on l'affiche
                             $tableau .= '<tr>

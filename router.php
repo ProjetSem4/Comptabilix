@@ -113,5 +113,6 @@
 	// Manage accounting
 		$slim->get('/comptes_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_voir.php'; });
 		$slim->get('/comptes_generer_cdr', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_generer_cdr.php'; });
-		
+		$slim->get('/comptes_supprimer', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_supprimer.php'; });
+
 ?>
