@@ -28,6 +28,10 @@
                 // Alors on le déplace dans le bon dossier
                 rename($_FILES['fichier']['tmp_name'][$i], 'uploads/' . $_POST['annee'] . '/' . basename($_FILES['fichier']['name'][$i]) . '.' . time());
             }
+            // Sinon on affiche un message d'erreur
+            else
+                $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Impossible d\'uploader « ' . htmlspecialchars($_FILES['fichier']['name'][$i]) . ' ».');
+
         }
 
         // Et enfin on affiche un message de succès
