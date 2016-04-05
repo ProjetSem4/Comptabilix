@@ -59,7 +59,7 @@
                 else
                 {
                     // On affiche le titre du tableau
-                    $tableau = '<tr><th>Nom du fichier</th><th>Date d\'envoi</th><th style="width:50px">Action</th></tr>';
+                    $tableau = '<tr><th>Nom du fichier</th><th>Date d\'envoi</th><th style="width:100px">Actions</th></tr>';
 
                     // Compteur de fichiers pour l'année
                     $nbr_fichiers = 0;
@@ -76,7 +76,11 @@
                             $tableau .= '<tr>
                                 <td>' . htmlspecialchars($contenu) . '</td>
                                 <td>' . date('d/m/Y à H:i', filemtime('uploads/' . $annee['annee'] . '/' . $contenu)) . '</td>
-                                <td><a class="btn btn-danger" title="Supprimer" href="comptes_supprimer?a=' . $annee['annee'] . '&fichier=' . urlencode($contenu) . '"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                <td>
+
+                                    <a class="btn btn-info" title="Télécharger" href="comptes_telecharger?a=' . $annee['annee'] . '&fichier=' . urlencode($contenu) . '"><span class="glyphicon glyphicon-cloud-download"></span></a>
+                                    <a class="btn btn-danger" title="Supprimer" href="comptes_supprimer?a=' . $annee['annee'] . '&fichier=' . urlencode($contenu) . '"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
                             </tr>';
 
                             // Et on incrémente le compteur de fichiers
