@@ -128,3 +128,7 @@ h3
     background: #2daa9e;
     color: #fff;
 }
+#formulaire_upload
+{
+    display: none;
+}

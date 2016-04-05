@@ -29,6 +29,12 @@
         <h1>Gestion des comptes</h1>
         <p>Retrouvez ici l'ensemble des documents relatifs aux comptes de votre association, classés par année.</p>
 
+        <!-- Formulaire d'upload caché pour envoyer des fichiers via un click (utilisation de JQuery) -->
+        <form action="comptes_uploader" method="post" enctype="multipart/form-data" id="formulaire_upload">
+            <input type="file" name="fichier[]" multiple required id="formulaire_upload_fichier" />
+            <input type="hidden" name="annee" required id="formulaire_upload_annee" />
+        </form>
+
         <?php
             // Récupération de la liste des années pour lequelles des factures sont émises
             $query_liste_annee = $slim->pdo->query('SELECT DISTINCT YEAR(date_acceptation) as annee
@@ -44,7 +50,7 @@
                     <span class="glyphicon glyphicon-calendar"></span> ' . $annee['annee'] . '
                     <div class="pull-right">
                         <a class="btn btn-success" title="Générer un compte de résultat" href="comptes_generer_cdr?a=' . $annee['annee'] . '"><span class="glyphicon glyphicon-stats"></span></a>
-                        <a class="btn btn-success" title="Envoyer un nouveau document" href="comptes_uploader?a=' . $annee['annee'] . '"><span class="glyphicon glyphicon-cloud-upload"></span></a>
+                        <a class="btn btn-success" title="Envoyer un nouveau document" href="#" onclick="upload_au_click(' . $annee['annee'] . ')"><span class="glyphicon glyphicon-cloud-upload"></span></a>
                     </div>
                 </h2>';
 
@@ -105,3 +111,4 @@
         ?>
     </div>
 </div>
+<script type="text/javascript" src="template/upload_click_bouton.js"></script>

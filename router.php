@@ -116,4 +116,7 @@
 		$slim->get('/comptes_supprimer', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_supprimer.php'; });
 		$slim->get('/comptes_telecharger', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_telecharger.php'; });
 
+		// Form action pages
+			$slim->post('/comptes_uploader', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_uploader.php'; });
+
 ?>
