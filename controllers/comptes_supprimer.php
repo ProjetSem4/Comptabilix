@@ -1,14 +1,14 @@
 <?php
     // Commençons par vérifier si l'utilisation est correcte
     if(!isset($_GET['a'], $_GET['fichier']))
-        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais usage du générateur.');
+        $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Mauvais usage du lien.');
     
     // L'année est-elle bien un nombre?
     elseif(!is_numeric($_GET['a']))
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'L\'année doit être un nombre.');
 
     // Le fichier existe-t-il bien, dans le bon répertoire?
-    elseif(!file_exists('uploads/' . $_GET['a'] . '/' . basename($_GET['fichier'])))
+    elseif(!file_exists('uploads/' . $_GET['a'] . '/' . basename($_GET['fichier'])) || substr(basename($_GET['fichier']), 0, 1) == '.')
         $_SESSION['fortitudo_messages'][] = array('type' => 'error', 'content' => 'Le fichier n\'existe pas.');
 
     // Ou si tout va bien
