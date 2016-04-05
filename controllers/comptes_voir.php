@@ -36,6 +36,9 @@
         </form>
 
         <?php
+            // Fonction de tri par timestamp pour les fichiers
+            function tri_dates_inverse($a, $b) { return $b['date'] - $a['date']; }
+
             // Récupération de la liste des années pour lequelles des factures sont émises
             $query_liste_annee = $slim->pdo->query('SELECT DISTINCT YEAR(date_acceptation) as annee
                                                     FROM T_Devis
@@ -67,8 +70,8 @@
                     // On affiche le titre du tableau
                     $tableau = '<tr><th>Nom du fichier</th><th>Date d\'envoi</th><th style="width:100px">Actions</th></tr>';
 
-                    // Compteur de fichiers pour l'année
-                    $nbr_fichiers = 0;
+                    // Tableau contenant la liste des fichiers pour l'année, permettant un tri par date à posteriori
+                    $fichiers_annee = array();
 
                     // On ouvre le répertoire d'upload pour l'année
                     $repertoire = opendir('uploads/' . $annee['annee']);
@@ -87,19 +90,12 @@
                             // Puis on converti le timestamp string en long
                             $timestamp_fichier = $timestamp_fichier + 0;
 
-                            // Alors on l'affiche
-                            $tableau .= '<tr>
-                                <td>' . htmlspecialchars($nom_fichier) . '</td>
-                                <td>' . date('d/m/Y à H:i', $timestamp_fichier) . '</td>
-                                <td>
-
-                                    <a class="btn btn-info" title="Télécharger" href="comptes_telecharger?a=' . $annee['annee'] . '&fichier=' . urlencode($contenu) . '"><span class="glyphicon glyphicon-cloud-download"></span></a>
-                                    <a class="btn btn-danger" title="Supprimer" href="comptes_supprimer?a=' . $annee['annee'] . '&fichier=' . urlencode($contenu) . '"><span class="glyphicon glyphicon-trash"></span></a>
-                                </td>
-                            </tr>';
-
-                            // Et on incrémente le compteur de fichiers
-                            $nbr_fichiers++;
+                            // Et on insère le tout dans le tableau
+                            $fichiers_annee[] = array
+                            (
+                                'date' => $timestamp_fichier,
+                                'nom' => $nom_fichier
+                            );
                         }
                     }
 
@@ -107,12 +103,31 @@
                     closedir($repertoire);
 
                     // Si aucune fichier n'a été affiché, on met un message d'erreur
-                    if($nbr_fichiers == 0)
+                    if(count($fichiers_annee) == 0)
                         echo '<tr><td colspan="3" style="text-align:center;">Aucun document uploadé pour l\'année.</td></tr>';
 
-                    // Sinon on affiche le tableau
+                    // Sinon
                     else
+                    {
+                        // On trie les valeurs
+                        usort($fichiers_annee, 'tri_dates_inverse');
+
+                        // On les insère dans une ligne de tableau
+                        foreach($fichiers_annee as $fichier)
+                        {
+                            $tableau .= '<tr>
+                                <td>' . htmlspecialchars($fichier['nom']) . '</td>
+                                <td>' . date('d/m/Y à H:i', $fichier['date']) . '</td>
+                                <td>
+                                    <a class="btn btn-info" title="Télécharger" href="comptes_telecharger?a=' . $annee['annee'] . '&fichier=' . urlencode($fichier['nom'] . '.' . $fichier['date']) . '"><span class="glyphicon glyphicon-cloud-download"></span></a>
+                                    <a class="btn btn-danger" title="Supprimer" href="comptes_supprimer?a=' . $annee['annee'] . '&fichier=' . urlencode($fichier['nom'] . '.' . $fichier['date']) . '"><span class="glyphicon glyphicon-trash"></span></a>
+                                </td>
+                            </tr>';
+                        }
+                        
+                        // Et on affiche le tableau
                         echo $tableau;
+                    }
                 }
 
                 echo '</table>';
