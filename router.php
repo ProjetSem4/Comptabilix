@@ -109,4 +109,7 @@
 
 		// Form action pages
 			$slim->post('/paiements_ajouter_submit', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/paiements_ajouter_submit.php'; });
+
+	// Manage accounting
+		$slim->get('/comptes_voir', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_voir.php'; });
 ?>

@@ -24,7 +24,7 @@
         <div class="panel-heading"><h3 class="panel-title miseenpage3">Comptabilité</h3></div>
         <ul class="nav nav-pills nav-stacked menu">
             <li role="presentation"><a href="paiements_voir">Gérer les paiements</a></li>
-            <li role="presentation"><a href="#">Afficher les comptes</a></li>
+            <li role="presentation"><a href="comptes_voir">Gestion des comptes</a></li>
             <li role="presentation"><a href="#">Générer des documents</a></li>
         </ul>   
     </div>
