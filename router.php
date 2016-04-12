@@ -1,6 +1,6 @@
 <?php
     // [TEMP] Our homepage
-    $slim->get('/', function($request, $response, $args) use ($templacat, $slim, $config) { include 'controllers/homepage.php'; });
+    $slim->get('/', function($request, $response, $args) use ($templacat, $slim, $config) { include 'controllers/projet_voir.php'; });
 
 	// Project related pages	
 		$slim->get('/projet_visualiser', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/projet_visualiser.php'; });
@@ -118,5 +118,4 @@
 
 		// Form action pages
 			$slim->post('/comptes_uploader', function($request, $response, $args) use ($templacat, $slim, $config){ include 'controllers/comptes_uploader.php'; });
-
 ?>

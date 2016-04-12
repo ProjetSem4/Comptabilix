@@ -118,7 +118,7 @@
 					// Otherwise
 					else
 					{
-						echo '<tr><th>#</th><th>Date d\'émission</th><th>Date d\'acceptation</th><th style="width: 50px">Action</th></tr>';
+						echo '<tr><th>#</th><th>Date d\'émission</th><th>Date d\'acceptation</th><th style="width: 100px">Actions</th></tr>';
 		
 						while($quotation = $query_quotations->fetch())
 						{
@@ -134,8 +134,12 @@
 								<td>' . $quotation['num_devis'] . '</td>
 								<td>' . $quotation['date_emission'] . '</td>
 								<td>' . $quotation['date_acceptation'] . $bouton . '</td>
-								<td><a class="btn btn-info" title="Visualiser le devis" href="devis_visualiser?id=' . $quotation['num_devis'] . '"><span class="glyphicon glyphicon-search"></span></a>
-								</td>
+								<td><a class="btn btn-info" title="Visualiser le devis" href="devis_visualiser?id=' . $quotation['num_devis'] . '"><span class="glyphicon glyphicon-search"></span></a> ';
+								if($quotation['date_acceptation'] == 'n/a')
+										echo '<a class="btn btn-success" title="Générer une version PDF du devis" href="generators/generer_devis.php?id=' . $quotation['num_devis'] . '"><span class="glyphicon glyphicon-print"></span></a>';
+								else
+										echo '<a class="btn btn-success" title="Générer une version PDF de la facture" href="generators/generer_facture.php?id=' . $quotation['num_devis'] . '"><span class="glyphicon glyphicon-print"></span></a>';
+								echo '</td>
 							</tr>';
 						}
 					}

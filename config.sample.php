@@ -19,6 +19,8 @@
         'services_per_page' => 20,
         'paiements_per_page' => 20,
 
-        'site_url' => '[URL]'
+        'site_url' => '[URL]',
+        
+        'pdf_footer' => ''
     );
 ?>
